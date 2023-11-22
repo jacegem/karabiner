@@ -35,7 +35,7 @@
                 :mods ["left_command"]}}
 
 
-   ;;  line 1
+   ;;  row 1
    :shift+ctrl {:from {:keys ["2" "e"]
                        :mods []}
                 :to {:keys ["left_shift"]
@@ -51,17 +51,23 @@
                :to {:keys ["left_shift"]
                     :mods ["left_command"]}}
 
-   ;; line 2
+   ;; row 2
    :escape {:from {:keys ["w" "e"]
                    :mods []}
             :to {:keys ["escape"]
                  :mods []}
+            :desc "io 는 입력하는 경우가 많아, right 는 제외한다"
             :right false}
 
    :tab {:from {:keys ["w" "r"]
                 :mods []}
          :to {:keys ["tab"]
               :mods []}}
+
+   :shift+tab {:from {:keys ["q" "r"]
+                      :mods []}
+               :to {:keys ["tab"]
+                    :mods ["left_shift"]}}
 
    :delete_or_backspace {:from {:keys ["e" "r"]
                                 :mods []}
@@ -83,7 +89,7 @@
                    :to {:keys ["left_shift"]
                         :mods ["left_command"]}}
 
-   ;;  line 3
+   ;;  row 3
    :caps/ctrl+opt {:from {:keys ["s" "d"]
                           :mods []}
                    :to {:keys ["left_control"]
@@ -99,6 +105,12 @@
                     :mods []}
              :to {:keys ["left_option"]
                   :mods ["left_command"]}}
+
+   :ctrl+opt+tab {:from {:keys ["s" "e"]
+                         :mods []}
+                  :to {:keys ["tab"]
+                       :mods ["left_control"
+                              "left_option"]}}
 
    :caps/shift+ctrl+opt {:from {:keys ["s" "c"]
                                 :mods []}
@@ -118,7 +130,7 @@
               :to {:keys ["left_control"]
                    :mods ["left_command"]}}
 
-  ;;  line 4
+  ;;  row 4
    :shift {:from {:keys ["x" "c"]
                   :mods []}
            :to {:keys ["left_shift"]
@@ -133,7 +145,48 @@
    :cmd {:from {:keys ["c" "v"]
                 :mods []}
          :to {:keys ["left_command"]
-              :mods []}}})
+              :mods []}}
+
+   :cmd+z {:from {:keys ["z" "x"]
+                  :mods []}
+           :to {:keys ["left_command"]
+                :mods ["z"]}}
+
+   :cmd+w {:from {:keys ["w" "v"]
+                  :mods []}
+           :to {:keys ["left_command"]
+                :mods ["w"]}}
+
+;; row 5 (space)
+
+   :shift+space {:from {:keys ["s" "spacebar"]
+                        :mods []}
+                 :to {:keys ["spacebar"]
+                      :mods ["left_shift"]}}
+
+   :ctrl+opt+space {:from {:keys ["d" "spacebar"]
+                           :mods []}
+                    :to {:keys ["spacebar"]
+                         :mods ["left_control"
+                                "left_option"]}}
+
+   :ctrl+space {:from {:keys ["x" "spacebar"]
+                       :mods []}
+                :to {:keys ["spacebar"]
+                     :mods ["left_control"]}}
+
+   :opt+space {:from {:keys ["c" "spacebar"]
+                      :mods []}
+               :to {:keys ["spacebar"]
+                    :mods ["left_option"]}}
+
+   :cmd+space {:from {:keys ["v" "spacebar"]
+                      :mods []}
+               :to {:keys ["spacebar"]
+                    :mods ["left_command"]}}
+
+;;    end
+   })
 
 (comment
   (spit "rules.txt" (generate config-map))

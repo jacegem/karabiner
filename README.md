@@ -13,3 +13,4 @@
 ```
 git clone https://github.com/jacegem/karabiner ~/.config/karabiner
 ```
+,

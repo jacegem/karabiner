@@ -53,19 +53,23 @@
             to-modifers)))
 
 
-
 (def left-right {"w" "o"
                  "e" "i"
                  "r" "u"
+                 "a" "semicolon"
                  "s" "l"
                  "d" "k"
                  "f" "j"
-                 "x" "."
-                 "c" ","
+                 "x" "period"
+                 "c" "comma"
+                 "q" "p"
                  "v" "m"
+                 "z" "slash"
                  "2" "9"
                  "3" "8"
-                 "4" "7"})
+                 "4" "7"
+                 "spacebar" "spacebar"})
+
 
 (defn gen-simultaneous-rule-right [[name {:keys [from to] :as value}]]
   (let [{from-keys :keys} from
@@ -76,9 +80,9 @@
 
 (comment
   (def config
-    [:shift+ctrl {:from {:keys ["3" "r"]
+    [:shift+ctrl {:from {:keys ["c" "r"]
                          :mods []}
-                  :to {:keys ["left_shift"]
+                  :to {:keys ["s"]
                        :mods ["left_control"]}}])
   (gen-simultaneous-rule config)
   (gen-simultaneous-rule-right config)
