@@ -179,6 +179,7 @@
         }
     ]
 }, {
+<<<<<<< HEAD
 "description": "d+spacebar ➡️ spacebar + left_control + left_option",
     "manipulators": [
         {
@@ -209,6 +210,8 @@
         }
     ]
 }, {
+=======
+>>>>>>> 2e41079695992babf41decaa179729315cbc797c
 "description": "s+c ➡️ left_shift + left_control + left_option",
     "manipulators": [
         {
@@ -479,7 +482,11 @@
         }
     ]
 }, {
+<<<<<<< HEAD
 "description": "s+spacebar ➡️ spacebar + left_shift",
+=======
+"description": "s+spacebar ➡️ left_control + left_command",
+>>>>>>> 2e41079695992babf41decaa179729315cbc797c
     "manipulators": [
         {
             "from": {
@@ -501,8 +508,13 @@
             },
             "to": [
                 {
+<<<<<<< HEAD
                     "key_code": "spacebar",
                     "modifiers": [ "left_shift" ]
+=======
+                    "key_code": "left_control",
+                    "modifiers": [ "left_command" ]
+>>>>>>> 2e41079695992babf41decaa179729315cbc797c
                 }
             ],
             "type": "basic"
@@ -949,6 +961,7 @@
         }
     ]
 }, {
+<<<<<<< HEAD
 "description": "period+spacebar ➡️ spacebar + left_control",
     "manipulators": [
         {
@@ -983,6 +996,12 @@
     "manipulators": [
         {
             "from": {
+=======
+"description": "period+comma ➡️ left_shift",
+    "manipulators": [
+        {
+            "from": {
+>>>>>>> 2e41079695992babf41decaa179729315cbc797c
                 "simultaneous": [ {"key_code": "period" }, {"key_code": "comma" } ],
                 "simultaneous_options": {
                     "detect_key_down_uninterruptedly": true,
@@ -1099,6 +1118,7 @@
         }
     ]
 }, {
+<<<<<<< HEAD
 "description": "k+spacebar ➡️ spacebar + left_control + left_option",
     "manipulators": [
         {
@@ -1129,6 +1149,8 @@
         }
     ]
 }, {
+=======
+>>>>>>> 2e41079695992babf41decaa179729315cbc797c
 "description": "l+comma ➡️ left_shift + left_control + left_option",
     "manipulators": [
         {
@@ -1399,7 +1421,11 @@
         }
     ]
 }, {
+<<<<<<< HEAD
 "description": "l+spacebar ➡️ spacebar + left_shift",
+=======
+"description": "l+spacebar ➡️ left_control + left_command",
+>>>>>>> 2e41079695992babf41decaa179729315cbc797c
     "manipulators": [
         {
             "from": {
@@ -1421,8 +1447,13 @@
             },
             "to": [
                 {
+<<<<<<< HEAD
                     "key_code": "spacebar",
                     "modifiers": [ "left_shift" ]
+=======
+                    "key_code": "left_control",
+                    "modifiers": [ "left_command" ]
+>>>>>>> 2e41079695992babf41decaa179729315cbc797c
                 }
             ],
             "type": "basic"
@@ -1579,11 +1610,19 @@
         }
     ]
 }, {
+<<<<<<< HEAD
 "description": "slash+period ➡️ left_command + z",
     "manipulators": [
         {
             "from": {
                 "simultaneous": [ {"key_code": "slash" }, {"key_code": "period" } ],
+=======
+"description": "+period ➡️ left_command + z",
+    "manipulators": [
+        {
+            "from": {
+                "simultaneous": [ {"key_code": "" }, {"key_code": "period" } ],
+>>>>>>> 2e41079695992babf41decaa179729315cbc797c
                 "simultaneous_options": {
                     "detect_key_down_uninterruptedly": true,
                     "key_down_order": "insensitive",
@@ -1759,11 +1798,19 @@
         }
     ]
 }, {
+<<<<<<< HEAD
 "description": "p+u ➡️ tab + left_shift",
     "manipulators": [
         {
             "from": {
                 "simultaneous": [ {"key_code": "p" }, {"key_code": "u" } ],
+=======
+"description": "+u ➡️ tab + left_shift",
+    "manipulators": [
+        {
+            "from": {
+                "simultaneous": [ {"key_code": "" }, {"key_code": "u" } ],
+>>>>>>> 2e41079695992babf41decaa179729315cbc797c
                 "simultaneous_options": {
                     "detect_key_down_uninterruptedly": true,
                     "key_down_order": "insensitive",
@@ -1818,6 +1865,7 @@
             "type": "basic"
         }
     ]
+<<<<<<< HEAD
 }, {
 "description": "m+spacebar ➡️ spacebar + left_command",
     "manipulators": [
@@ -1849,3 +1897,6 @@
         }
     ]
 }
+=======
+}
+>>>>>>> 2e41079695992babf41decaa179729315cbc797c

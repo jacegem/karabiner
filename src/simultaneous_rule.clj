@@ -39,7 +39,7 @@
 (defn simul-key-code [key-code]
   (str "{\"key_code\": \"" key-code "\" }"))
 
-(defn gen-simultaneous-rule [[name {:keys [from to]}]]
+(defn gen-simultaneous-rule [[_name {:keys [from to]}]]
   (let [{from-keys :keys} from
         {to-keys :keys to-mods :mods} to
         from-key-code (str/join ", " (map simul-key-code from-keys))
@@ -71,7 +71,7 @@
                  "spacebar" "spacebar"})
 
 
-(defn gen-simultaneous-rule-right [[name {:keys [from to] :as value}]]
+(defn gen-simultaneous-rule-right [[name {:keys [from] :as value}]]
   (let [{from-keys :keys} from
         right-keys (map left-right from-keys)]
     (->> [name (assoc-in value [:from :keys] right-keys)]

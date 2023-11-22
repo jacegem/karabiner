@@ -28,7 +28,7 @@
 
 
 
-(defn gen-single-rule [[name {:keys [from to]}]]
+(defn gen-single-rule [[_name {:keys [from to]}]]
   (let [{from-keys :keys} from
         {to-keys :keys to-mods :mods} to
         from-key-code (double-quote (first from-keys))
