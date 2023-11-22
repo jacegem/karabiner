@@ -127,7 +127,7 @@
               :mods []}}})
 
 (comment
-  (spit "config.txt" (generate config-map))
+  (spit "rule.txt" (generate config-map))
   :rcf)
 
 
