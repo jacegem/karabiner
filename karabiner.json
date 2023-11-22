@@ -134,7 +134,7 @@
                         ]
                     },
                     {
-                        "description": "e+f ➡️ left_shift + left_command",
+                        "description": "e+f ➡️ left_shift + left_option + left_command",
                         "manipulators": [
                             {
                                 "from": {
@@ -165,6 +165,7 @@
                                     {
                                         "key_code": "left_shift",
                                         "modifiers": [
+                                            "left_option",
                                             "left_command"
                                         ]
                                     }
@@ -495,16 +496,16 @@
                         ]
                     },
                     {
-                        "description": "x+v ➡️ left_shift + left_control + left_command",
+                        "description": "2+r ➡️ left_shift + left_control + left_command",
                         "manipulators": [
                             {
                                 "from": {
                                     "simultaneous": [
                                         {
-                                            "key_code": "x"
+                                            "key_code": "2"
                                         },
                                         {
-                                            "key_code": "v"
+                                            "key_code": "r"
                                         }
                                     ],
                                     "simultaneous_options": {
@@ -608,46 +609,6 @@
                                         "key_code": "left_option",
                                         "modifiers": [
                                             "left_command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "2+r ➡️ left_shift + left_option",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "2"
-                                        },
-                                        {
-                                            "key_code": "r"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_down_order": "insensitive",
-                                        "key_up_order": "insensitive",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "super-mode",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": [
-                                            "left_option"
                                         ]
                                     }
                                 ],
@@ -931,6 +892,44 @@
                                         "modifiers": [
                                             "z"
                                         ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "f+spacebar ➡️ return_or_enter",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "f"
+                                        },
+                                        {
+                                            "key_code": "spacebar"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_down_order": "insensitive",
+                                        "key_up_order": "insensitive",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "super-mode",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "return_or_enter",
+                                        "modifiers": []
                                     }
                                 ],
                                 "type": "basic"
@@ -1275,6 +1274,44 @@
                         ]
                     },
                     {
+                        "description": "x+v ➡️ left_option",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "x"
+                                        },
+                                        {
+                                            "key_code": "v"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_down_order": "insensitive",
+                                        "key_up_order": "insensitive",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "super-mode",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_option",
+                                        "modifiers": []
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "period+spacebar ➡️ spacebar + left_control",
                         "manipulators": [
                             {
@@ -1353,7 +1390,7 @@
                         ]
                     },
                     {
-                        "description": "i+j ➡️ left_shift + left_command",
+                        "description": "i+j ➡️ left_shift + left_option + left_command",
                         "manipulators": [
                             {
                                 "from": {
@@ -1384,6 +1421,7 @@
                                     {
                                         "key_code": "left_shift",
                                         "modifiers": [
+                                            "left_option",
                                             "left_command"
                                         ]
                                     }
@@ -1714,16 +1752,16 @@
                         ]
                     },
                     {
-                        "description": "period+m ➡️ left_shift + left_control + left_command",
+                        "description": "9+u ➡️ left_shift + left_control + left_command",
                         "manipulators": [
                             {
                                 "from": {
                                     "simultaneous": [
                                         {
-                                            "key_code": "period"
+                                            "key_code": "9"
                                         },
                                         {
-                                            "key_code": "m"
+                                            "key_code": "u"
                                         }
                                     ],
                                     "simultaneous_options": {
@@ -1827,46 +1865,6 @@
                                         "key_code": "left_option",
                                         "modifiers": [
                                             "left_command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "9+u ➡️ left_shift + left_option",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "9"
-                                        },
-                                        {
-                                            "key_code": "u"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_down_order": "insensitive",
-                                        "key_up_order": "insensitive",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "super-mode",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": [
-                                            "left_option"
                                         ]
                                     }
                                 ],
@@ -2150,6 +2148,44 @@
                                         "modifiers": [
                                             "z"
                                         ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "j+spacebar ➡️ return_or_enter",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "j"
+                                        },
+                                        {
+                                            "key_code": "spacebar"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_down_order": "insensitive",
+                                        "key_up_order": "insensitive",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "super-mode",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "return_or_enter",
+                                        "modifiers": []
                                     }
                                 ],
                                 "type": "basic"
@@ -2463,6 +2499,44 @@
                                         "modifiers": [
                                             "left_command"
                                         ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "period+m ➡️ left_option",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "period"
+                                        },
+                                        {
+                                            "key_code": "m"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_down_order": "insensitive",
+                                        "key_up_order": "insensitive",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "super-mode",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_option",
+                                        "modifiers": []
                                     }
                                 ],
                                 "type": "basic"

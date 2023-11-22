@@ -41,10 +41,11 @@
                 :to {:keys ["left_shift"]
                      :mods ["left_control"]}}
 
-   :shift+opt {:from {:keys ["2" "r"]
-                      :mods []}
-               :to {:keys ["left_shift"]
-                    :mods ["left_option"]}}
+   :shift+ctrl+cmd {:from {:keys ["2" "r"]
+                           :mods []}
+                    :to {:keys ["left_shift"]
+                         :mods ["left_control"
+                                "left_command"]}}
 
    :shift+cmd {:from {:keys ["3" "r"]
                       :mods []}
@@ -142,6 +143,10 @@
                          :mods ["left_control"
                                 "left_option"]}}
 
+   :return_or_enter_3 {:from {:keys ["f" "spacebar"]
+                              :mods []}
+                       :to {:keys ["return_or_enter"]
+                            :mods []}}
 
   ;;  row 4
    :shift {:from {:keys ["x" "c"]
@@ -149,11 +154,10 @@
            :to {:keys ["left_shift"]
                 :mods []}}
 
-   :shift+ctrl+cmd {:from {:keys ["x" "v"]
-                           :mods []}
-                    :to {:keys ["left_shift"]
-                         :mods ["left_control"
-                                "left_command"]}}
+   :opt {:from {:keys ["x" "v"]
+                :mods []}
+         :to {:keys ["left_option"]
+              :mods []}}
 
    :cmd {:from {:keys ["c" "v"]
                 :mods []}

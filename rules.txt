@@ -89,7 +89,7 @@
         }
     ]
 }, {
-"description": "e+f ➡️ left_shift + left_command",
+"description": "e+f ➡️ left_shift + left_option + left_command",
     "manipulators": [
         {
             "from": {
@@ -112,7 +112,7 @@
             "to": [
                 {
                     "key_code": "left_shift",
-                    "modifiers": [ "left_command" ]
+                    "modifiers": [ "left_option", "left_command" ]
                 }
             ],
             "type": "basic"
@@ -179,7 +179,6 @@
         }
     ]
 }, {
-<<<<<<< HEAD
 "description": "d+spacebar ➡️ spacebar + left_control + left_option",
     "manipulators": [
         {
@@ -210,8 +209,6 @@
         }
     ]
 }, {
-=======
->>>>>>> 2e41079695992babf41decaa179729315cbc797c
 "description": "s+c ➡️ left_shift + left_control + left_option",
     "manipulators": [
         {
@@ -362,11 +359,11 @@
         }
     ]
 }, {
-"description": "x+v ➡️ left_shift + left_control + left_command",
+"description": "2+r ➡️ left_shift + left_control + left_command",
     "manipulators": [
         {
             "from": {
-                "simultaneous": [ {"key_code": "x" }, {"key_code": "v" } ],
+                "simultaneous": [ {"key_code": "2" }, {"key_code": "r" } ],
                 "simultaneous_options": {
                     "detect_key_down_uninterruptedly": true,
                     "key_down_order": "insensitive",
@@ -452,41 +449,7 @@
         }
     ]
 }, {
-"description": "2+r ➡️ left_shift + left_option",
-    "manipulators": [
-        {
-            "from": {
-                "simultaneous": [ {"key_code": "2" }, {"key_code": "r" } ],
-                "simultaneous_options": {
-                    "detect_key_down_uninterruptedly": true,
-                    "key_down_order": "insensitive",
-                    "key_up_order": "insensitive",
-                    "key_up_when": "any",
-                    "to_after_key_up": [
-                        {
-                            "set_variable": {
-                                "name": "super-mode",
-                                "value": 0
-                            }
-                        }
-                    ]
-                }
-            },
-            "to": [
-                {
-                    "key_code": "left_shift",
-                    "modifiers": [ "left_option" ]
-                }
-            ],
-            "type": "basic"
-        }
-    ]
-}, {
-<<<<<<< HEAD
 "description": "s+spacebar ➡️ spacebar + left_shift",
-=======
-"description": "s+spacebar ➡️ left_control + left_command",
->>>>>>> 2e41079695992babf41decaa179729315cbc797c
     "manipulators": [
         {
             "from": {
@@ -508,13 +471,8 @@
             },
             "to": [
                 {
-<<<<<<< HEAD
                     "key_code": "spacebar",
                     "modifiers": [ "left_shift" ]
-=======
-                    "key_code": "left_control",
-                    "modifiers": [ "left_command" ]
->>>>>>> 2e41079695992babf41decaa179729315cbc797c
                 }
             ],
             "type": "basic"
@@ -695,6 +653,36 @@
                 {
                     "key_code": "left_command",
                     "modifiers": [ "z" ]
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}, {
+"description": "f+spacebar ➡️ return_or_enter",
+    "manipulators": [
+        {
+            "from": {
+                "simultaneous": [ {"key_code": "f" }, {"key_code": "spacebar" } ],
+                "simultaneous_options": {
+                    "detect_key_down_uninterruptedly": true,
+                    "key_down_order": "insensitive",
+                    "key_up_order": "insensitive",
+                    "key_up_when": "any",
+                    "to_after_key_up": [
+                        {
+                            "set_variable": {
+                                "name": "super-mode",
+                                "value": 0
+                            }
+                        }
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "return_or_enter",
+                    "modifiers": [  ]
                 }
             ],
             "type": "basic"
@@ -961,7 +949,36 @@
         }
     ]
 }, {
-<<<<<<< HEAD
+"description": "x+v ➡️ left_option",
+    "manipulators": [
+        {
+            "from": {
+                "simultaneous": [ {"key_code": "x" }, {"key_code": "v" } ],
+                "simultaneous_options": {
+                    "detect_key_down_uninterruptedly": true,
+                    "key_down_order": "insensitive",
+                    "key_up_order": "insensitive",
+                    "key_up_when": "any",
+                    "to_after_key_up": [
+                        {
+                            "set_variable": {
+                                "name": "super-mode",
+                                "value": 0
+                            }
+                        }
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "left_option",
+                    "modifiers": [  ]
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}, {
 "description": "period+spacebar ➡️ spacebar + left_control",
     "manipulators": [
         {
@@ -996,12 +1013,6 @@
     "manipulators": [
         {
             "from": {
-=======
-"description": "period+comma ➡️ left_shift",
-    "manipulators": [
-        {
-            "from": {
->>>>>>> 2e41079695992babf41decaa179729315cbc797c
                 "simultaneous": [ {"key_code": "period" }, {"key_code": "comma" } ],
                 "simultaneous_options": {
                     "detect_key_down_uninterruptedly": true,
@@ -1028,7 +1039,7 @@
         }
     ]
 }, {
-"description": "i+j ➡️ left_shift + left_command",
+"description": "i+j ➡️ left_shift + left_option + left_command",
     "manipulators": [
         {
             "from": {
@@ -1051,7 +1062,7 @@
             "to": [
                 {
                     "key_code": "left_shift",
-                    "modifiers": [ "left_command" ]
+                    "modifiers": [ "left_option", "left_command" ]
                 }
             ],
             "type": "basic"
@@ -1118,7 +1129,6 @@
         }
     ]
 }, {
-<<<<<<< HEAD
 "description": "k+spacebar ➡️ spacebar + left_control + left_option",
     "manipulators": [
         {
@@ -1149,8 +1159,6 @@
         }
     ]
 }, {
-=======
->>>>>>> 2e41079695992babf41decaa179729315cbc797c
 "description": "l+comma ➡️ left_shift + left_control + left_option",
     "manipulators": [
         {
@@ -1301,11 +1309,11 @@
         }
     ]
 }, {
-"description": "period+m ➡️ left_shift + left_control + left_command",
+"description": "9+u ➡️ left_shift + left_control + left_command",
     "manipulators": [
         {
             "from": {
-                "simultaneous": [ {"key_code": "period" }, {"key_code": "m" } ],
+                "simultaneous": [ {"key_code": "9" }, {"key_code": "u" } ],
                 "simultaneous_options": {
                     "detect_key_down_uninterruptedly": true,
                     "key_down_order": "insensitive",
@@ -1391,41 +1399,7 @@
         }
     ]
 }, {
-"description": "9+u ➡️ left_shift + left_option",
-    "manipulators": [
-        {
-            "from": {
-                "simultaneous": [ {"key_code": "9" }, {"key_code": "u" } ],
-                "simultaneous_options": {
-                    "detect_key_down_uninterruptedly": true,
-                    "key_down_order": "insensitive",
-                    "key_up_order": "insensitive",
-                    "key_up_when": "any",
-                    "to_after_key_up": [
-                        {
-                            "set_variable": {
-                                "name": "super-mode",
-                                "value": 0
-                            }
-                        }
-                    ]
-                }
-            },
-            "to": [
-                {
-                    "key_code": "left_shift",
-                    "modifiers": [ "left_option" ]
-                }
-            ],
-            "type": "basic"
-        }
-    ]
-}, {
-<<<<<<< HEAD
 "description": "l+spacebar ➡️ spacebar + left_shift",
-=======
-"description": "l+spacebar ➡️ left_control + left_command",
->>>>>>> 2e41079695992babf41decaa179729315cbc797c
     "manipulators": [
         {
             "from": {
@@ -1447,13 +1421,8 @@
             },
             "to": [
                 {
-<<<<<<< HEAD
                     "key_code": "spacebar",
                     "modifiers": [ "left_shift" ]
-=======
-                    "key_code": "left_control",
-                    "modifiers": [ "left_command" ]
->>>>>>> 2e41079695992babf41decaa179729315cbc797c
                 }
             ],
             "type": "basic"
@@ -1610,19 +1579,11 @@
         }
     ]
 }, {
-<<<<<<< HEAD
 "description": "slash+period ➡️ left_command + z",
     "manipulators": [
         {
             "from": {
                 "simultaneous": [ {"key_code": "slash" }, {"key_code": "period" } ],
-=======
-"description": "+period ➡️ left_command + z",
-    "manipulators": [
-        {
-            "from": {
-                "simultaneous": [ {"key_code": "" }, {"key_code": "period" } ],
->>>>>>> 2e41079695992babf41decaa179729315cbc797c
                 "simultaneous_options": {
                     "detect_key_down_uninterruptedly": true,
                     "key_down_order": "insensitive",
@@ -1642,6 +1603,36 @@
                 {
                     "key_code": "left_command",
                     "modifiers": [ "z" ]
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}, {
+"description": "j+spacebar ➡️ return_or_enter",
+    "manipulators": [
+        {
+            "from": {
+                "simultaneous": [ {"key_code": "j" }, {"key_code": "spacebar" } ],
+                "simultaneous_options": {
+                    "detect_key_down_uninterruptedly": true,
+                    "key_down_order": "insensitive",
+                    "key_up_order": "insensitive",
+                    "key_up_when": "any",
+                    "to_after_key_up": [
+                        {
+                            "set_variable": {
+                                "name": "super-mode",
+                                "value": 0
+                            }
+                        }
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "return_or_enter",
+                    "modifiers": [  ]
                 }
             ],
             "type": "basic"
@@ -1798,19 +1789,11 @@
         }
     ]
 }, {
-<<<<<<< HEAD
 "description": "p+u ➡️ tab + left_shift",
     "manipulators": [
         {
             "from": {
                 "simultaneous": [ {"key_code": "p" }, {"key_code": "u" } ],
-=======
-"description": "+u ➡️ tab + left_shift",
-    "manipulators": [
-        {
-            "from": {
-                "simultaneous": [ {"key_code": "" }, {"key_code": "u" } ],
->>>>>>> 2e41079695992babf41decaa179729315cbc797c
                 "simultaneous_options": {
                     "detect_key_down_uninterruptedly": true,
                     "key_down_order": "insensitive",
@@ -1865,7 +1848,6 @@
             "type": "basic"
         }
     ]
-<<<<<<< HEAD
 }, {
 "description": "m+spacebar ➡️ spacebar + left_command",
     "manipulators": [
@@ -1896,7 +1878,34 @@
             "type": "basic"
         }
     ]
+}, {
+"description": "period+m ➡️ left_option",
+    "manipulators": [
+        {
+            "from": {
+                "simultaneous": [ {"key_code": "period" }, {"key_code": "m" } ],
+                "simultaneous_options": {
+                    "detect_key_down_uninterruptedly": true,
+                    "key_down_order": "insensitive",
+                    "key_up_order": "insensitive",
+                    "key_up_when": "any",
+                    "to_after_key_up": [
+                        {
+                            "set_variable": {
+                                "name": "super-mode",
+                                "value": 0
+                            }
+                        }
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "left_option",
+                    "modifiers": [  ]
+                }
+            ],
+            "type": "basic"
+        }
+    ]
 }
-=======
-}
->>>>>>> 2e41079695992babf41decaa179729315cbc797c
