@@ -299,11 +299,11 @@
         }
     ]
 }, {
-"description": "e+r ➡️ left_shift + left_option",
+"description": "e+f ➡️ left_shift + left_option",
     "manipulators": [
         {
             "from": {
-                "simultaneous": [ {"key_code": "e" }, {"key_code": "r" } ],
+                "simultaneous": [ {"key_code": "e" }, {"key_code": "f" } ],
                 "simultaneous_options": {
                     "detect_key_down_uninterruptedly": true,
                     "key_down_order": "insensitive",

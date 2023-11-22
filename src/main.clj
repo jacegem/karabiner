@@ -54,7 +54,7 @@
                          :mods ["left_control"
                                 "left_command"]}}
 
-   :shift+opt {:from {:keys ["e" "r"]
+   :shift+opt {:from {:keys ["e" "f"]
                       :mods []}
                :to {:keys ["left_shift"]
                     :mods ["left_option"]}}
@@ -127,7 +127,7 @@
               :mods []}}})
 
 (comment
-  (spit "out.txt" (generate config-map))
+  (spit "config.txt" (generate config-map))
   :rcf)
 
 

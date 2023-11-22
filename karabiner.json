@@ -422,7 +422,7 @@
                         ]
                     },
                     {
-                        "description": "e+r ➡️ left_shift + left_option",
+                        "description": "e+f ➡️ left_shift + left_option",
                         "manipulators": [
                             {
                                 "from": {
@@ -431,7 +431,7 @@
                                             "key_code": "e"
                                         },
                                         {
-                                            "key_code": "r"
+                                            "key_code": "f"
                                         }
                                     ],
                                     "simultaneous_options": {
