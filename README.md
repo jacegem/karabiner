@@ -8,7 +8,7 @@
 
 ## 적용 화면 
 
-![](https://i.imgur.com/pbIOtJK.jpg)
+![](https://i.imgur.com/b2CzsNL.jpg)
 
 ## git clone 
 
