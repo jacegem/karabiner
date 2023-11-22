@@ -56,12 +56,18 @@
                    :mods []}
             :to {:keys ["escape"]
                  :mods []}
+            :desc "io 는 입력하는 경우가 많아, right 는 제외한다"
             :right false}
 
    :tab {:from {:keys ["w" "r"]
                 :mods []}
          :to {:keys ["tab"]
               :mods []}}
+
+   :shift+tab {:from {:keys ["q" "r"]
+                      :mods []}
+               :to {:keys ["tab"]
+                    :mods ["left_shift"]}}
 
    :delete_or_backspace {:from {:keys ["e" "r"]
                                 :mods []}
@@ -100,6 +106,12 @@
              :to {:keys ["left_option"]
                   :mods ["left_command"]}}
 
+   :ctrl+opt+tab {:from {:keys ["s" "e"]
+                         :mods []}
+                  :to {:keys ["tab"]
+                       :mods ["left_control"
+                              "left_option"]}}
+
    :caps/shift+ctrl+opt {:from {:keys ["s" "c"]
                                 :mods []}
                          :to {:keys ["left_shift"]
@@ -114,6 +126,11 @@
                                          "left_command"]}}
 
    :ctrl+cmd {:from {:keys ["d" "v"]
+                     :mods []}
+              :to {:keys ["left_control"]
+                   :mods ["left_command"]}}
+
+   :shift+space {:from {:keys ["s" "spacebar"]
                      :mods []}
               :to {:keys ["left_control"]
                    :mods ["left_command"]}}
@@ -133,7 +150,20 @@
    :cmd {:from {:keys ["c" "v"]
                 :mods []}
          :to {:keys ["left_command"]
-              :mods []}}})
+              :mods []}}
+
+   :cmd+z {:from {:keys ["z" "x"]
+                  :mods []}
+           :to {:keys ["left_command"]
+                :mods ["z"]}}
+
+   :cmd+w {:from {:keys ["w" "v"]
+                  :mods []}
+           :to {:keys ["left_command"]
+                :mods ["w"]}}
+
+;;    end
+   })
 
 (comment
   (spit "rules.txt" (generate config-map))
