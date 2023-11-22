@@ -87,7 +87,8 @@
    :shift+opt+cmd {:from {:keys ["e" "f"]
                           :mods []}
                    :to {:keys ["left_shift"]
-                        :mods ["left_command"]}}
+                        :mods ["left_option"
+                               "left_command"]}}
 
    ;;  row 3
    :caps/ctrl+opt {:from {:keys ["s" "d"]
@@ -130,6 +131,18 @@
               :to {:keys ["left_control"]
                    :mods ["left_command"]}}
 
+   :shift+space {:from {:keys ["s" "spacebar"]
+                        :mods []}
+                 :to {:keys ["spacebar"]
+                      :mods ["left_shift"]}}
+
+   :ctrl+opt+space {:from {:keys ["d" "spacebar"]
+                           :mods []}
+                    :to {:keys ["spacebar"]
+                         :mods ["left_control"
+                                "left_option"]}}
+
+
   ;;  row 4
    :shift {:from {:keys ["x" "c"]
                   :mods []}
@@ -157,19 +170,6 @@
            :to {:keys ["left_command"]
                 :mods ["w"]}}
 
-;; row 5 (space)
-
-   :shift+space {:from {:keys ["s" "spacebar"]
-                        :mods []}
-                 :to {:keys ["spacebar"]
-                      :mods ["left_shift"]}}
-
-   :ctrl+opt+space {:from {:keys ["d" "spacebar"]
-                           :mods []}
-                    :to {:keys ["spacebar"]
-                         :mods ["left_control"
-                                "left_option"]}}
-
    :ctrl+space {:from {:keys ["x" "spacebar"]
                        :mods []}
                 :to {:keys ["spacebar"]
@@ -184,6 +184,7 @@
                       :mods []}
                :to {:keys ["spacebar"]
                     :mods ["left_command"]}}
+
 
 ;;    end
    })
