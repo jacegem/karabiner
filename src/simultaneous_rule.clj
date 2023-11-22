@@ -18,7 +18,7 @@
                     \"to_after_key_up\": [
                         {
                             \"set_variable\": {
-                                \"name\": \"superduper-mode\",
+                                \"name\": \"super-mode\",
                                 \"value\": 0
                             }
                         }
@@ -54,13 +54,32 @@
 
 
 
+(def left-right {"w" "o"
+                 "e" "i"
+                 "r" "u"
+                 "s" "l"
+                 "d" "k"
+                 "f" "j"
+                 "x" "."
+                 "c" ","
+                 "v" "m"
+                 "2" "9"
+                 "3" "8"
+                 "4" "7"})
+
+(defn gen-simultaneous-rule-right [[name {:keys [from to] :as value}]]
+  (let [{from-keys :keys} from
+        right-keys (map left-right from-keys)]
+    (->> [name (assoc-in value [:from :keys] right-keys)]
+         (gen-simultaneous-rule))))
+
 
 (comment
-
   (def config
     [:shift+ctrl {:from {:keys ["3" "r"]
                          :mods []}
                   :to {:keys ["left_shift"]
                        :mods ["left_control"]}}])
   (gen-simultaneous-rule config)
+  (gen-simultaneous-rule-right config)
   :rcf) 
