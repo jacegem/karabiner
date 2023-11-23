@@ -8,12 +8,46 @@
 
 (def config-map
   {;; single 
-   :cap_lock->ctrl+opt {:from {:keys ["caps_lock"]
+;; https://karabiner-elements.pqrs.org/docs/json/typical-complex-modifications-examples/#open-alfred-4-if-escape-is-held-down
+   :cap_lock->ctrl+opt {:rule-type :single
+                        :from {:keys ["caps_lock"]
                                :mods []}
                         :to {:keys ["left_control"]
                              :mods ["left_option"]}
                         :alone-key "escapse"}
 
+
+   ;; double
+;; https://karabiner-elements.pqrs.org/docs/json/typical-complex-modifications-examples/#change-right_shift-x2-to-mission_control
+   #_#_double-right-shift {:rule-type :double
+                           :description "double-right-shift to show CLOCK"
+                           :manipulators [{:type "basic"
+                                           :from {:key_code  "right_shift"
+                                                  :modifiers {:optional ["any"]}}
+                                           :to [{:key_code "`"
+                                                 :modifiers ["left_control"
+                                                             "left_option"]}]
+                                           :conditions [{:type "variable_if"
+                                                         :name "right_shift pressed"
+                                                         :value 1}]}
+                                          {:type "basic"
+                                           :from {:key_code  "right_shift"
+                                                  :modifiers {:optional ["any"]}}
+                                           :to [{:set_variable {:name "right_shift pressed"
+                                                                :value 1}}
+                                                {:key_code "right_shift"}]
+                                           :to_delayed_action {:to_if_invoked [{:set_variable {:name "right_shift pressed"
+                                                                                               :value 0}}]
+                                                               :to_if_cancled [{:set_variable {:name "right_shift pressed"
+                                                                                               :value 0}}]}}]}
+
+
+;;  https://karabiner-elements.pqrs.org/docs/json/typical-complex-modifications-examples/#change-equaldelete-to-forward_delete-if-these-keys-are-pressed-simultaneously
+   :equal+delete->forward-delete {:rule-type :multi
+                                  :from {:keys ["equal_sign" "delete_or_backspace"]
+                                         :mods []}
+                                  :to {:keys ["delete_forward"]
+                                       :mods []}}
    ;; with A 
    :cmd+s {:from {:keys ["a" "s"]
                   :mods []}
@@ -110,7 +144,6 @@
 
 
 ;; row 4   
-
    :sc->ctrl+opt+cmd {:from {:keys ["s" "c"]
                              :mods []}
                       :to {:keys ["left_command"]
@@ -124,10 +157,10 @@
                                         "left_option"
                                         "left_command"]}}
 
-   :dv->cmd+shift {:from {:keys ["d" "v"]
-                          :mods []}
-                   :to {:keys ["left_option"]
-                        :mods []}}
+   :dv->opt {:from {:keys ["d" "v"]
+                    :mods []}
+             :to {:keys ["left_option"]
+                  :mods []}}
 
   ;;  row 5
    :cmd+z {:from {:keys ["z" "x"]
@@ -140,9 +173,9 @@
            :to {:keys ["left_shift"]
                 :mods []}}
 
-   :opt+shift {:from {:keys ["x" "v"]
+   :cmd+shift {:from {:keys ["x" "v"]
                       :mods []}
-               :to {:keys ["left_option"]
+               :to {:keys ["left_command"]
                     :mods ["left_shift"]}}
 
    :cmd {:from {:keys ["c" "v"]
@@ -211,6 +244,28 @@
    })
 
 
+(defmulti rule-convert (fn [[_k v]] (:rule-type v)))
+
+(defmethod rule-convert :single [config]
+  (get-single-rule config))
+
+(defmethod rule-convert :double [config]
+  config)
+
+(defmethod rule-convert :multi [config]
+  [(get-simultaneous-rule config)
+   (get-simultaneous-rule-right config)])
+
+(defmethod rule-convert :default [config]
+  [(get-simultaneous-rule config)
+   (get-simultaneous-rule-right config)])
+
+
+(comment
+  (mapcat rule-convert config-map)
+  (rule-convert [:a {:rule-type :double}])
+
+  :rcf)
 
 (defn rule [config]
   (let [[_ value] config
@@ -228,7 +283,7 @@
     (when (and (>= keys-len 2)
                (not= right false))
       (get-simultaneous-rule-right config))))
- 
+
 (defn generate [configs]
   (let [file-name "karabiner.json"
         karabiner (json/read-str (slurp file-name))
