@@ -1,8 +1,8 @@
 (ns main
-  (:require [clojure.string :as str]
-            [simultaneous-rule :refer [gen-simultaneous-rule
-                                       gen-simultaneous-rule-right]]
-            [single-rule :refer [gen-single-rule]]))
+  (:require [clojure.data.json :as json]
+            [simultaneous-rule :refer [get-simultaneous-rule
+                                       get-simultaneous-rule-right]]
+            [single-rule :refer [get-single-rule]]))
 
 ;; https://github.com/pqrs-org/Karabiner-Elements/issues/925
 
@@ -11,12 +11,23 @@
    :cap_lock->ctrl+opt {:from {:keys ["caps_lock"]
                                :mods []}
                         :to {:keys ["left_control"]
-                             :mods ["left_option"]}}
+                             :mods ["left_option"]}
+                        :alone-key "escapse"}
 
-   ;; column 1 
+   ;; with A 
    :cmd+s {:from {:keys ["a" "s"]
                   :mods []}
            :to {:keys ["s"]
+                :mods ["left_command"]}}
+
+   :cmd+d {:from {:keys ["a" "d"]
+                  :mods []}
+           :to {:keys ["d"]
+                :mods ["left_command"]}}
+
+   :cmd+f {:from {:keys ["a" "f"]
+                  :mods []}
+           :to {:keys ["f"]
                 :mods ["left_command"]}}
 
    :cmd+x {:from {:keys ["a" "x"]
@@ -34,56 +45,38 @@
            :to {:keys ["v"]
                 :mods ["left_command"]}}
 
-
-   ;;  row 1
-   :shift+ctrl {:from {:keys ["2" "e"]
+   ;; row 1
+   :we->escape {:from {:keys ["w" "e"]
                        :mods []}
-                :to {:keys ["left_shift"]
-                     :mods ["left_control"]}}
+                :to {:keys ["escape"]
+                     :mods []}}
 
-   :shift+ctrl+cmd {:from {:keys ["2" "r"]
-                           :mods []}
-                    :to {:keys ["left_shift"]
-                         :mods ["left_control"
-                                "left_command"]}}
+   :wr->tab {:from {:keys ["w" "r"]
+                    :mods []}
+             :to {:keys ["tab"]
+                  :mods []}}
 
-   :shift+cmd {:from {:keys ["3" "r"]
-                      :mods []}
-               :to {:keys ["left_shift"]
-                    :mods ["left_command"]}}
+   :qr->shift+tab {:from {:keys ["q" "r"]
+                          :mods []}
+                   :to {:keys ["tab"]
+                        :mods ["left_shift"]}}
+
+   :er->delete_or_backspace {:from {:keys ["e" "r"]
+                                    :mods []}
+                             :to {:keys ["delete_or_backspace"]
+                                  :mods []}}
 
    ;; row 2
-   :escape {:from {:keys ["w" "e"]
-                   :mods []}
-            :to {:keys ["escape"]
-                 :mods []}
-            :desc "io 는 입력하는 경우가 많아, right 는 제외한다"
-            :right false}
+   :wd->ctrl+cmd {:from {:keys ["w" "d"]
+                         :mods []}
+                  :to {:keys ["left_control"]
+                       :mods ["left_command"]}}
 
-   :tab {:from {:keys ["w" "r"]
-                :mods []}
-         :to {:keys ["tab"]
-              :mods []}}
-
-   :shift+tab {:from {:keys ["q" "r"]
-                      :mods []}
-               :to {:keys ["tab"]
-                    :mods ["left_shift"]}}
-
-   :delete_or_backspace {:from {:keys ["e" "r"]
-                                :mods []}
-                         :to {:keys ["delete_or_backspace"]
-                              :mods []}}
-
-   :return_or_enter {:from {:keys ["w" "d"]
-                            :mods []}
-                     :to {:keys ["return_or_enter"]
-                          :mods []}}
-
-   :return_or_enter_2 {:from {:keys ["w" "f"]
-                              :mods []}
-                       :to {:keys ["return_or_enter"]
-                            :mods []}}
+   :wf->ctrl+cmd+shift {:from {:keys ["w" "f"]
+                               :mods []}
+                        :to {:keys ["left_control"]
+                             :mods ["left_command"
+                                    "left_shift"]}}
 
    :shift+opt+cmd {:from {:keys ["e" "f"]
                           :mods []}
@@ -91,46 +84,97 @@
                         :mods ["left_option"
                                "left_command"]}}
 
-   ;;  row 3
-   :caps/ctrl+opt {:from {:keys ["s" "d"]
-                          :mods []}
-                   :to {:keys ["left_control"]
-                        :mods ["left_option"]}}
-
-   :caps/ctrl+opt+cmd {:from {:keys ["s" "f"]
-                              :mods []}
-                       :to {:keys ["left_control"]
-                            :mods ["left_option"
-                                   "left_command"]}}
-
-   :opt+cmd {:from {:keys ["d" "f"]
-                    :mods []}
-             :to {:keys ["left_option"]
-                  :mods ["left_command"]}}
-
-   :ctrl+opt+tab {:from {:keys ["s" "e"]
+   :ctrl+opt+tab {:desc "마우스 이동용으로 사용한다. "
+                  :from {:keys ["s" "e"]
                          :mods []}
                   :to {:keys ["tab"]
                        :mods ["left_control"
                               "left_option"]}}
 
-   :caps/shift+ctrl+opt {:from {:keys ["s" "c"]
-                                :mods []}
-                         :to {:keys ["left_shift"]
-                              :mods ["left_control"
-                                     "left_option"]}}
+   ;;  row 3
+   :sd->ctrl+opt {:from {:keys ["s" "d"]
+                         :mods []}
+                  :to {:keys ["left_control"]
+                       :mods ["left_option"]}}
 
-   :caps/shift+ctrl+opt+cmd {:from {:keys ["s" "v"]
-                                    :mods []}
-                             :to {:keys ["left_shift"]
-                                  :mods ["left_control"
-                                         "left_option"
-                                         "left_command"]}}
+   :sf->ctrl+opt+shift {:from {:keys ["s" "f"]
+                               :mods []}
+                        :to {:keys ["left_control"]
+                             :mods ["left_option"
+                                    "left_shift"]}}
 
-   :ctrl+cmd {:from {:keys ["d" "v"]
-                     :mods []}
-              :to {:keys ["left_control"]
-                   :mods ["left_command"]}}
+   :df->opt+cmd {:from {:keys ["d" "f"]
+                        :mods []}
+                 :to {:keys ["left_option"]
+                      :mods ["left_command"]}}
+
+
+;; row 4   
+
+   :sc->ctrl+opt+cmd {:from {:keys ["s" "c"]
+                             :mods []}
+                      :to {:keys ["left_command"]
+                           :mods ["left_control"
+                                  "left_option"]}}
+
+   :sv->ctrl+opt+cmd+shift {:from {:keys ["s" "v"]
+                                   :mods []}
+                            :to {:keys ["left_shift"]
+                                 :mods ["left_control"
+                                        "left_option"
+                                        "left_command"]}}
+
+   :dv->cmd+shift {:from {:keys ["d" "v"]
+                          :mods []}
+                   :to {:keys ["left_option"]
+                        :mods []}}
+
+  ;;  row 5
+   :cmd+z {:from {:keys ["z" "x"]
+                  :mods []}
+           :to {:keys ["left_command"]
+                :mods ["z"]}}
+
+   :shift {:from {:keys ["x" "c"]
+                  :mods []}
+           :to {:keys ["left_shift"]
+                :mods []}}
+
+   :opt+shift {:from {:keys ["x" "v"]
+                      :mods []}
+               :to {:keys ["left_option"]
+                    :mods ["left_shift"]}}
+
+   :cmd {:from {:keys ["c" "v"]
+                :mods []}
+         :to {:keys ["left_command"]
+              :mods []}}
+
+   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+   ;; space 
+   :cmd+w {:from {:keys ["w" "spacebar"]
+                  :mods []}
+           :to {:keys ["w"]
+                :mods ["left_command"]}}
+
+   :opt+shift+e {:from {:keys ["e" "spacebar"]
+                        :mods []}
+                 :to {:keys ["e"]
+                      :mods ["left_shift"
+                             "left_option"]}}
+
+   :cmd+return {:from {:keys ["r" "spacebar"]
+                       :mods []}
+                :to {:keys ["return_or_enter"]
+                     :mods ["left_command"]}}
+
+   :space+a {:from {:keys ["a" "spacebar"]
+                    :mods []}
+             :to {:keys ["a"]
+                  :mods ["left_control"
+                         "left_option"
+                         "left_command"
+                         "left_shift"]}}
 
    :shift+space {:from {:keys ["s" "spacebar"]
                         :mods []}
@@ -148,32 +192,6 @@
                        :to {:keys ["return_or_enter"]
                             :mods []}}
 
-  ;;  row 4
-   :shift {:from {:keys ["x" "c"]
-                  :mods []}
-           :to {:keys ["left_shift"]
-                :mods []}}
-
-   :opt {:from {:keys ["x" "v"]
-                :mods []}
-         :to {:keys ["left_option"]
-              :mods []}}
-
-   :cmd {:from {:keys ["c" "v"]
-                :mods []}
-         :to {:keys ["left_command"]
-              :mods []}}
-
-   :cmd+z {:from {:keys ["z" "x"]
-                  :mods []}
-           :to {:keys ["left_command"]
-                :mods ["z"]}}
-
-   :cmd+w {:from {:keys ["w" "v"]
-                  :mods []}
-           :to {:keys ["left_command"]
-                :mods ["w"]}}
-
    :ctrl+space {:from {:keys ["x" "spacebar"]
                        :mods []}
                 :to {:keys ["spacebar"]
@@ -189,13 +207,9 @@
                :to {:keys ["spacebar"]
                     :mods ["left_command"]}}
 
-
 ;;    end
    })
 
-(comment
-  (spit "rules.txt" (generate config-map))
-  :rcf)
 
 
 (defn rule [config]
@@ -203,8 +217,8 @@
         from-keys (get-in value [:from :keys])
         keys-len (count from-keys)]
     (if (<= keys-len 1)
-      (gen-single-rule config)
-      (gen-simultaneous-rule config))))
+      (get-single-rule config)
+      (get-simultaneous-rule config))))
 
 (defn rule-right [config]
   (let [[_name value] config
@@ -213,10 +227,55 @@
         right  (:right value)]
     (when (and (>= keys-len 2)
                (not= right false))
-      (gen-simultaneous-rule-right config))))
-
+      (get-simultaneous-rule-right config))))
+ 
 (defn generate [configs]
-  (->> (concat (map rule configs)
-               (map rule-right configs))
-       (remove nil?)
-       (str/join ", ")))
+  (let [file-name "karabiner.json"
+        karabiner (json/read-str (slurp file-name))
+        profile (->> (get karabiner "profiles")
+                     (filter #(= "Default profile" (get % "name")))
+                     first)
+        new-rules (->> (concat (map rule configs)
+                               (map rule-right configs))
+                       (remove nil?))
+        new-profile (assoc-in profile ["complex_modifications" "rules"] new-rules)
+        json-str (-> (assoc karabiner "profiles" [new-profile])
+                     (json/write-str {:escape-unicode false}))]
+    (spit file-name json-str)))
+
+
+(comment
+  (generate config-map)
+  (def simple-map
+    {;; single 
+     :cap_lock->ctrl+opt {:from {:keys ["caps_lock"]
+                                 :mods []}
+                          :to {:keys ["left_control"]
+                               :mods ["left_option"]}}})
+  (generate simple-map)
+  @(def data (json/read-str (slurp "karabiner.json")))
+  @(def profiles (get data "profiles"))
+  @(def default-profile
+     (->> (filter #(= "Default profile" (get % "name"))
+                  profiles)
+          first))
+  @(def rules
+     (get-in default-profile ["complex_modifications" "rules"]))
+
+  @(def complex_modifications
+     (->> (filter #(= "complex_modifications" (first %))
+                  profiles)))
+
+  (keys (first profiles))
+  (map (fn [k]
+         (prn k)) profiles)
+
+  (-> data
+      (get "profiles")
+      #_(get "complex_modifications")
+      count)
+
+  (spit "z_data.json" (json/write-str data {:escape-unicode false}))
+  (spit "j.txt" (generate config-map))
+  (spit "rules.txt" (generate config-map))
+  :rcf)
