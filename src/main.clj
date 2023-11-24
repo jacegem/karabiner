@@ -108,14 +108,13 @@
    ;; row 2
    :wd->ctrl+cmd {:from {:keys ["w" "d"]
                          :mods []}
-                  :to {:keys ["left_control"]
-                       :mods ["left_command"]}}
+                  :to {:keys ["left_shift"]
+                       :mods ["left_option"]}}
 
    :wf->ctrl+cmd+shift {:from {:keys ["w" "f"]
                                :mods []}
                         :to {:keys ["left_control"]
-                             :mods ["left_command"
-                                    "left_shift"]}}
+                             :mods ["left_command"]}}
 
    :shift+opt+cmd {:from {:keys ["e" "f"]
                           :mods []}
@@ -151,9 +150,9 @@
 ;; row 4   
    :sc->ctrl+opt+cmd {:from {:keys ["s" "c"]
                              :mods []}
-                      :to {:keys ["left_command"]
-                           :mods ["left_control"
-                                  "left_option"]}}
+                      :to {:keys ["left_control"]
+                           :mods ["left_option"
+                                  "left_command"]}}
 
    :sv->ctrl+opt+cmd+shift {:from {:keys ["s" "v"]
                                    :mods []}

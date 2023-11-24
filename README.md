@@ -2,7 +2,7 @@
 # karabiner 설정
 
 
-![](https://i.imgur.com/b2CzsNL.jpg)
+![](https://i.imgur.com/gnH8PAn.jpg)
 
 2~3키 동시 입력을 mod 키로 변경
 
