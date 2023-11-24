@@ -282,7 +282,10 @@
   (mapcat rule-convert config-map)
   (rule-convert [:a {:rule-type :double}])
 
+
+
   :rcf)
+
 
 ;; (defn rule [config]
 ;;   (let [[_ value] config

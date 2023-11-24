@@ -15,3 +15,8 @@
 ```
 git clone https://github.com/jacegem/karabiner ~/.config/karabiner
 ```
+
+
+## 설명
+
+`{ 'cmd', 'ctrl', 'shift' }` 가 맥에서 기본 캡처키로 사용되고 있어서 제외한다. 
