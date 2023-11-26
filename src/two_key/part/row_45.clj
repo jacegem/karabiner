@@ -56,10 +56,22 @@
                     :from (co/sim "s" "v")
                     :to (co/key-mods :ctrl :opt :cmd :sft)}]}
 
+   {:description "l+m ➡️ ctrl+opt+cmd"
+    :copy-flip true
+    :manipulators [{:type "basic",
+                    :from (co/sim :l :m)
+                    :to (co/key-mods :ctrl :opt :cmd :sft)}]}
+
    {:description "d+v ➡️ cmd+sft"
     :copy-flip true
     :manipulators [{:type "basic",
                     :from (co/sim "d" "v")
+                    :to (co/key-mods :cmd :sft)}]}
+
+   {:description "k+m ➡️ cmd+sft"
+    :copy-flip true
+    :manipulators [{:type "basic",
+                    :from (co/sim :k :m)
                     :to (co/key-mods :cmd :sft)}]}
 ;;    end
    ])

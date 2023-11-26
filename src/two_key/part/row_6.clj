@@ -19,8 +19,7 @@
 
 
 (comment
-  (spc-mode {:from [:f :j]
-             :to [:cmd]})
+  (spc-mode {:from [:p]})
   :rcf)
 
 (def rules
@@ -29,8 +28,7 @@
                    {:from (co/key-any :spc)
                     :conditions [(co/var-if "caps-mode" 0)]
                     :to_if_alone [(co/key-mods "spacebar")]
-                    :to [(co/set-var "spc-mode" 1)
-                         (co/key-mods :ctrl :cmd :sft)]
+                    :to [(co/set-var "spc-mode" 1)]
                     :to_after_key_up [(co/set-var "spc-mode" 0)]}
 
                    {:from (co/key-mods :spc :any)

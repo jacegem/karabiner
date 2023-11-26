@@ -31,6 +31,13 @@ layers:
   # - ['', VOL DOWN, VOL UP, MUTE, '', '', 'KP *', 'KP /', HOME, PGUP, LEFT, RIGHT, KP ENT]
   # - ['', '', '', '', '', '', 'KP +', 'KP -', END, PGDN, DOWN, '', {type: held}]
   # - ['', '', '', '', '']
+  ctrl+opt:
+  - [ESC, 'F1', 'F1', 'F1', 'F1', 'F1', 'F1', 'F1', 'F1', 'F1', 'F1', 'F1', 'F1', 'SCR', 'DEL', 'RGB Mode']
+  - ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-',  '=', 'BSPC', PgUp]
+  - [TAB, Q, W, E, R, T, Y, BSPC, ⇪, DEL, CLIPBOARD'', 'cmd+[', 'cmd+]', '', '']
+  - [CAPS, A, {type: held, t: S}, {type: held, t: D}, '', '', HOME, ⇦, ⇩, ➡, END, "'", ENT, HOME]
+  - [LSFT, Z, X, C, V, B, N, PgUp, PgDn, ., '', '', '', '']
+  - ['', '', LCMD, SHIFT, RCMD, '', '', '', '', '']
 combos:
   - {p:[33,34], k: "ESC", l:["default"]}
   - {p:[34,35], k: "BSPC", l:["default"]}
