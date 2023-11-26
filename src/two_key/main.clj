@@ -1,6 +1,5 @@
 (ns two-key.main
   (:require [clojure.data.json :as json]
-            [two-key.flip :as flip]
             [two-key.part.row-1 :as row-1]
             [two-key.part.row-2 :as row-2]
             [two-key.part.row-3 :as row-3]
@@ -15,41 +14,34 @@
   (update manipulator :type (fnil identity "basic")))
 
 (def rules
-  (let [lefts (concat row-1/rules
-                      row-2/rules
-                      row-3/rules
-                      row-3-4/rules
-                      row-4/rules
-                      row-4-5/rules
-                      row-5/rules
-                      row-6/rules)
+  (->> (concat row-1/rules
+               row-2/rules
+               row-3/rules
+               row-3-4/rules
+               row-4/rules
+               row-4-5/rules
+               row-5/rules
+               row-6/rules)
+       (map #(update % :manipulators
+                     (fn [manipulators]
+                       (map update-type manipulators))))))
 
-        rights (map flip/left-right lefts)]
-    (->> (concat lefts rights)
-         (remove nil?)
-         (map #(update % :manipulators
-                       (fn [manipulators]
-                         (map update-type manipulators)))))))
-
-(comment
-  (rules)
-  :rcf)
-
-
-(defn set-profile [rules name profile]
-  (when (= name (get profile "name"))
-    (assoc-in profile ["complex_modifications" "rules"] rules)))
+(defn update-profiles [name rules profiles]
+  (map (fn [profile]
+         (if  (= name (:name profile))
+           (assoc-in profile [:complex_modifications :rules] rules)
+           profile))
+       profiles))
 
 (defn set-configs
   ([] (set-configs rules))
   ([rules]
    (let [file-name "karabiner.json"
-         karabiner (json/read-str (slurp file-name))
-         profiles (map #(set-profile rules "Default profile" %)
-                       (get karabiner "profiles"))
-         json-str (-> (assoc karabiner "profiles" profiles)
-                      (json/write-str {:escape-unicode false}))]
-     #_profiles
+         karabiner (json/read-str (slurp file-name)
+                                  :key-fn keyword)
+         config (update karabiner :profiles (partial update-profiles "Default profile" rules))
+         json-str (json/write-str config {:escape-unicode false})]
+     #_config
      (spit file-name json-str))))
 
 (comment
