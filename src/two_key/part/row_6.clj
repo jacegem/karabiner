@@ -7,11 +7,9 @@
                         :to to}) from)
     [{:from (co/key-any from)
       :conditions [(co/var-if "spc-mode" 1)]
-      :to (remove nil?
-                  [(co/set-var "spc-mode" 0)
-                   (if (nil? to)
-                     (co/key-mods from :ctrl :cmd :sft)
-                     (apply co/key-mods to))])}
+      :to (if (nil? to)
+            [(co/key-mods from :ctrl :cmd :sft)]
+            [(apply co/key-mods to)])}
 
      {:from (co/key-any from)
       :conditions [(co/var-if "spc-mode" 0)]
@@ -20,45 +18,139 @@
 
 (comment
   (spc-mode {:from [:p]})
+  (co/key-any :spc)
+  (co/key-code :spc)
   :rcf)
 
+
 (def rules
-  [{:description "spcae ➡️ shift (다른 mods가 활성화된 경우에)"
-    :manipulators [;;  delay 가 조금 있다. 이게 사용하다 보면 느껴질 것 같은데..
-                   {:from (co/key-any :spc)
-                    :conditions [(co/var-if "caps-mode" 0)]
-                    :to_if_alone [(co/key-mods "spacebar")]
-                    :to [(co/set-var "spc-mode" 1)]
-                    :to_after_key_up [(co/set-var "spc-mode" 0)]}
+  [{:description "spc->sft (다른 mods가 활성화된 경우에)"
+    :manipulators [{:from (co/key-any :spc)
+                    :conditions [(co/var-if "spc->sft" 0)]
+                    :to (co/key-mods :spc)}
 
                    {:from (co/key-mods :spc :any)
-                    :conditions [(co/var-if "caps-mode" 1)]
+                    :conditions [(co/var-if "spc->sft" 1)]
                     :to [(co/key-mods :rsft)]}]}
 
-   {:description "spc-mode ➡️ ctrl+cmd+shift"
-    :manipulators (concat (spc-mode {:from [:s :l]
-                                     :to [:ctrl :opt]})
-                          (spc-mode {:from [:d :k]
-                                     :to [:sft]})
-                          (spc-mode {:from [:f :j]
-                                     :to [:cmd]})
-                          (spc-mode {:from [:g]
-                                     :to [:ctrl]})
-                          (spc-mode {:from [:h]
-                                     :to [:opt]})
+   {:description "spc+q ➡️ esc",
+    :manipulators [{:from (co/sim {:keys [:spc :q]})
+                    :to [(co/key-mods :esc)]}]}
 
-                          (spc-mode {:from [:1 :2 :3 :4 :5 :6 :7 :8 :9 :0 :hyphen :eq :bspc :page_up]})
-                          (spc-mode {:from [:q :w :e :r :t :y :u :i :o :p :open_bracket :close_bracket :backslash :page_down]})
-                          (spc-mode {:from [:a :semicolon :quote :open_bracket :return_or_enter :home]})
-                          (spc-mode {:from [:z :x :c :v :b :n :m :comma :period :slash :backslash :up_arrow :end]}))}
+   {:description "spc+w ➡️ ctrl+cmd+sft :: memory call",
+    :manipulators [{:from (co/sim {:keys [:spc :w]})
+                    :to [(co/key-mods :w :ctrl :cmd :sft)]}]}
 
+   {:description "spc+e ➡️ ctrl+cmd :: window move"
+    :manipulators [{:from (co/sim {:keys [:spc :e]})
+                    :to [(co/key-mods :ctrl :cmd)]}]}
+
+   {:description "spc+r ➡️ opt+cmd+sft",
+    :manipulators [{:from (co/sim {:keys [:spc :r]})
+                    :to [(co/key-mods :opt :cmd :sft)]}]}
+
+   {:description "spc+t ➡️ ctrl+cmd+sft",
+    :manipulators [{:from (co/sim {:keys [:spc :t]})
+                    :to [(co/key-mods :ctrl :cmd :sft)]}]}
+
+   {:description "spc+a ➡️ ctrl+opt+cmd+sft",
+    :manipulators [{:from (co/sim {:keys [:spc :a]})
+                    :to [(co/key-mods :ctrl :opt :cmd :sft)]}]}
+
+   {:description "spc+s ➡️ ctrl+opt",
+    :manipulators [{:from (co/sim {:keys [:spc :s]})
+                    :to [(co/key-mods :ctrl :opt)]}]}
+
+   {:description "spc+d ➡️ ctrl+opt+sft",
+    :manipulators [{:from (co/sim {:keys [:spc :d]})
+                    :to [(co/key-mods :ctrl :opt :sft)]}]}
+
+   {:description "spc+f ➡️ opt+cmd",
+    :manipulators [{:from (co/sim {:keys [:spc :f]})
+                    :to [(co/key-mods :opt :cmd)]}]}
+
+   {:description "spc+g ➡️ cmd+sft",
+    :manipulators [{:from (co/sim {:keys [:spc :g]})
+                    :to [(co/key-mods :cmd :sft)]}]}
+
+   {:description "spc+z ➡️ opt",
+    :manipulators [{:from (co/sim {:keys [:spc :z]})
+                    :to [(co/key-mods :opt)]}]}
+
+   {:description "spc+x ➡️ opt",
+    :manipulators [{:from (co/sim {:keys [:spc :x]})
+                    :to [(co/key-mods :sft)]}]}
+
+   {:description "spc+c ➡️ ctrl+opt+cmd",
+    :manipulators [{:from (co/sim {:keys [:spc :c]})
+                    :to [(co/key-mods :ctrl :opt :cmd)]}]}
+
+   {:description "spc+v ➡️ cmd"
+    :manipulators [{:from (co/sim {:keys [:spc :v]})
+                    :to [(co/key-mods :cmd)]}]}
+
+   {:description "spc+b ➡️ opt+sft"
+    :manipulators [{:from (co/sim {:keys [:spc :b]})
+                    :to [(co/key-mods :opt :sft)]}]}
   ;;  end
    ])
+
+
 
 (comment
   rules
   :rcf)
 
+
+#_{:description "spcae ➡️ shift (다른 mods가 활성화된 경우에)"
+   :manipulators [;;  delay 가 조금 있다. 이게 사용하다 보면 느껴질 것 같은데..
+                  {:from (co/key-any :spc)
+                   :conditions [(co/var-if "caps-mode" 0)]
+                   :to_if_alone [(co/key-mods "spacebar")]
+                   :to [(co/set-var "spc-mode" 1)]
+                   :to_after_key_up [(co/set-var "spc-mode" 0)]}
+
+                  {:from (co/key-mods :spc :any)
+                   :conditions [(co/var-if "caps-mode" 1)]
+                   :to [(co/key-mods :rsft)]}]}
+
+#_{:description "spc-mode ➡️ ctrl+cmd+shift"
+   :manipulators (concat #_(spc-mode {:from [:s :l]
+                                      :to [:ctrl :opt]})
+                  (spc-mode {:from [:d :k]
+                             :to [:sft]})
+                         (spc-mode {:from [:f :j]
+                                    :to [:cmd]})
+                         (spc-mode {:from [:g]
+                                    :to [:ctrl]})
+                         (spc-mode {:from [:h]
+                                    :to [:opt]})
+
+                         (spc-mode {:from [:1 :2 :3 :4 :5 :6 :7 :8 :9 :0 :hyphen :eq :bspc :page_up]})
+                         (spc-mode {:from [:q :w :e :r :t :y :u :i :o :p :open_bracket :close_bracket :backslash :page_down]})
+                         (spc-mode {:from [:a :semicolon :quote :open_bracket :return_or_enter :home]})
+                         (spc-mode {:from [:z :x :c :v :b :n :m :comma :period :slash :backslash :up_arrow :end]}))}
+
+
+
+
+#_{:description "right cmd (alone) ➡️ F13",
+   :copy-flip true
+   :manipulators [{:type "basic" {:description "spc+c ➡️ ctrl+cmd",
+                                  :manipulators [{:from (co/sim {:keys [:spc :c]})
+                                                  :to [(co/key-mods :ctrl :cmd)]}]}
+                   {:description "spc+c ➡️ ctrl+cmd",
+                    :manipulators [{:from (co/sim {:keys [:spc :c]})
+                                    :to [(co/key-mods :ctrl :cmd)]}]}
+                   {:description "spc+c ➡️ ctrl+cmd",
+                    :manipulators [{:from (co/sim {:keys [:spc :c]})
+                                    :to [(co/key-mods :ctrl :cmd)]}]}
+                   {:description "spc+c ➡️ ctrl+cmd",
+                    :manipulators [{:from (co/sim {:keys [:spc :c]})
+                                    :to [(co/key-mods :ctrl :cmd)]}]},
+                   :from (co/key-mods :rsft)
+                   :to (co/key-mods :rsft)
+                   :to_if_alone (co/key-code :F13)}]}
 
 ; (concat (spc-mode {:from [:q]
 ;;                    :to [:tab]})
