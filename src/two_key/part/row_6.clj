@@ -9,18 +9,35 @@
     [{:from (co/key-any from)
       :conditions [(co/var-if var/space-pressed 1)]
       :to (if (nil? to)
-            [(co/key-mods from :ctrl :cmd :sft)]
+            [(co/key-mods from :ctrl :opt :cmd :sft)]
             [(apply co/key-mods to)])}
 
      {:from (co/key-any from)
       :conditions [(co/var-if var/space-pressed 0)]
       :to [(co/key-mods from)]}]))
 
+#_{:description "double-right-shift to show CLOCK"
+   :manipulators [{:from (co/key-any :rsft)
+                   :conditions [(co/var-if "right-shift" 1)]
+                   :to [(co/key-mods :act :ctrl :opt)]}
+
+                  {:from (co/key-any :rsft)
+                   :to [(co/set-var "right-shift" 1)
+                        (co/key-mods :rsft)]
+                   :to_delayed_action (co/delayed-action "right-shift" 0)}]}
+
+
 (def rules
   [{:description "spc->sft (다른 mods가 활성화된 경우에) 1"
     :manipulators [{:from (co/key-any :spc)
+                    :conditions [(co/var-if var/space-pressed 1)]
+                    :to [(co/key-mods :spc :sft)]}
+
+                   {:from (co/key-any :spc)
                     :conditions [(co/var-if var/space-changed 0)]
-                    :to [(co/key-mods :spc)]}
+                    :to [(co/set-var var/space-pressed 1)
+                         (co/key-mods :spc)]
+                    :to_delayed_action (co/delayed-action var/space-pressed 0)}
 
                    {:from (co/key-any :spc)
                     :conditions [(co/var-if var/space-changed 1)
@@ -32,20 +49,20 @@
                                  (co/var-if var/space->command 1)]
                     :to [(co/key-mods :cmd)]}]}
 
-   {:description "spc+q ➡️ esc",
+   {:description "spc+q ➡️ with :all",
     :manipulators [{:from (co/sim {:keys [:spc :q]})
-                    :to [(co/key-mods :esc)]}]}
+                    :to [(co/key-mods :q :all)]}]}
 
-   {:description "spc+w ➡️ ctrl+cmd+sft :: memory call",
+   {:description "spc+w ➡️ with :all :: memory call",
     :manipulators [{:from (co/sim {:keys [:spc :w]})
-                    :to [(co/key-mods :w :ctrl :cmd :sft)]}]}
+                    :to [(co/key-mods :w :all)]}]}
 
    {:description "spc+e ➡️ ctrl+cmd :: window move"
     :manipulators [{:from (co/sim {:keys [:spc :e]})
                     :to [(co/key-mods :ctrl :cmd)]}]}
 
    {:description "spc+r ➡️ opt+cmd+sft",
-    :manipulators [{:from (co/sim {:keys [:spc :e]})
+    :manipulators [{:from (co/sim {:keys [:spc :r]})
                     :to [(co/key-mods :ctrl :opt :sft)]}]}
 
    {:description "spc+t ➡️ ctrl+cmd+sft",

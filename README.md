@@ -1,14 +1,20 @@
 
 # karabiner 설정
 
-![](src/keymap/keymap.svg)
-![](https://i.imgur.com/gnH8PAn.jpg)
-
-2~3키 동시 입력을 mod 키로 변경
-
-## 적용 화면 
-
 ![](https://i.imgur.com/pbIOtJK.jpg)
+
+## simultaneous keys
+
+![](https://i.imgur.com/9zXT1h4.png)
+![](https://i.imgur.com/JnbzDvQ.png)
+![](https://i.imgur.com/tByC2Ng.png)
+![](https://i.imgur.com/GWeGRGr.png)
+
+## with spacebar (& caps)
+
+![](https://i.imgur.com/Ebd75WJ.png)
+![](https://i.imgur.com/f7cuwMF.png)
+
 
 ## git clone 
 
@@ -17,6 +23,3 @@ git clone https://github.com/jacegem/karabiner ~/.config/karabiner
 ```
 
 
-## 설명
-
-`{ 'cmd', 'ctrl', 'shift' }` 가 맥에서 기본 캡처키로 사용되고 있어서 제외한다. 
