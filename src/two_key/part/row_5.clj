@@ -1,41 +1,51 @@
 (ns two-key.part.row-5
-  (:require [two-key.common :as co]))
+  (:require [two-key.common :as co]
+            [two-key.part.var :as var]))
+
+
 
 
 (def rules
-  [{:description "z+x ➡️ cmd+z"
+  [{:description "c+v ➡️ cmd"
     :copy-flip true
-    :manipulators [{:from (co/sim :z :x)
-                    :to (co/key-mods :z :cmd)}]}
-
-   {:description "z+v ➡️ opt"
-    :copy-flip true
-    :manipulators [{:from (co/sim {:keys [:z :v]
-                                   :to_after_key_up [(co/set-var "spc->sft" 0)]})
-                    :to [(co/set-var "spc->sft" 1)
-                         (co/key-mods :opt)]}]}
-
-   {:description "z+c ➡️ opt+sft"
-    :copy-flip true
-    :manipulators [{:from (co/sim :z :c)
-                    :to (co/key-mods :opt :sft)}]}
+    :manipulators [{:from (co/sim {:keys [:c :v]
+                                   :to_after_key_up [(co/set-var var/space-changed 0)
+                                                     (co/set-var var/space->shift 0)]})
+                    :to [(co/set-var var/space-changed 1)
+                         (co/set-var var/space->shift 1)
+                         (co/key-mods :cmd)]}]}
 
    {:description "x+c ➡️ shift"
     :copy-flip true
-    :manipulators [{:from (co/sim :x :c)
-                    :to (co/key-mods :sft)}]}
+    :manipulators [{:from (co/sim {:keys [:x :c]
+                                   :to_after_key_up [(co/set-var var/space-changed 0)
+                                                     (co/set-var var/space->command 0)]})
+                    :to [(co/set-var var/space-changed 1)
+                         (co/set-var var/space->command 1)
+                         (co/key-mods :sft)]}]}
 
-   {:description "c+v ➡️ cmd"
+   {:description "x+v ➡️ opt"
     :copy-flip true
-    :manipulators [{:from (co/sim {:keys [:c :v]
-                                   :to_after_key_up [(co/set-var "spc->sft" 0)]})
-                    :to [(co/set-var "spc->sft" 1)
-                         (co/key-mods :cmd)]}]}
+    :manipulators [{:from (co/sim {:keys [:x :v]
+                                   :to_after_key_up [(co/set-var var/space-changed 0)
+                                                     (co/set-var var/space->shift 0)]})
+                    :to [(co/set-var var/space-changed 1)
+                         (co/set-var var/space->shift 1)
+                         (co/key-mods :opt)]}]}
 
-   {:description "x+v ➡️ cmd+sft"
+   {:description "z+v ➡️ ctrl"
     :copy-flip true
-    :manipulators [{:from (co/sim :x :v)
-                    :to (co/key-mods :opt)}]}
+    :manipulators [{:from (co/sim {:keys [:z :v]
+                                   :to_after_key_up [(co/set-var var/space-changed 0)
+                                                     (co/set-var var/space->shift 0)]})
+                    :to [(co/set-var var/space-changed 1)
+                         (co/set-var var/space->shift 1)
+                         (co/key-mods :ctrl)]}]}
+
+   {:description "z+x ➡️ cmd+z"
+    :copy-flip true
+    :manipulators [{:from (co/sim :z :x)
+                    :to (co/key-mods :z :cmd)}]}
 
    {:description "double-right-shift to show CLOCK"
     :manipulators [{:from (co/key-any :rsft)
@@ -49,3 +59,16 @@
 
   ;; end
   )
+
+
+
+
+#_{:description "z+c ➡️ opt+sft"
+   :copy-flip true
+   :manipulators [{:from (co/sim :z :c)
+                   :to (co/key-mods :opt :sft)}]}
+
+#_{:description "x+v ➡️ cmd+sft"
+   :copy-flip true
+   :manipulators [{:from (co/sim :x :v)
+                   :to (co/key-mods :opt)}]}

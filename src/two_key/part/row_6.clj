@@ -1,37 +1,36 @@
 (ns two-key.part.row-6
-  (:require [two-key.common :as co]))
+  (:require [two-key.common :as co]
+            [two-key.part.var :as var]))
 
 (defn spc-mode [{:keys [from to]}]
   (if (vector? from)
     (mapcat #(spc-mode {:from %
                         :to to}) from)
     [{:from (co/key-any from)
-      :conditions [(co/var-if "spc-mode" 1)]
+      :conditions [(co/var-if var/space-pressed 1)]
       :to (if (nil? to)
             [(co/key-mods from :ctrl :cmd :sft)]
             [(apply co/key-mods to)])}
 
      {:from (co/key-any from)
-      :conditions [(co/var-if "spc-mode" 0)]
+      :conditions [(co/var-if var/space-pressed 0)]
       :to [(co/key-mods from)]}]))
 
-
-(comment
-  (spc-mode {:from [:p]})
-  (co/key-any :spc)
-  (co/key-code :spc)
-  :rcf)
-
-
 (def rules
-  [{:description "spc->sft (다른 mods가 활성화된 경우에)"
+  [{:description "spc->sft (다른 mods가 활성화된 경우에) 1"
     :manipulators [{:from (co/key-any :spc)
-                    :conditions [(co/var-if "spc->sft" 0)]
-                    :to (co/key-mods :spc)}
+                    :conditions [(co/var-if var/space-changed 0)]
+                    :to [(co/key-mods :spc)]}
 
-                   {:from (co/key-mods :spc :any)
-                    :conditions [(co/var-if "spc->sft" 1)]
-                    :to [(co/key-mods :rsft)]}]}
+                   {:from (co/key-any :spc)
+                    :conditions [(co/var-if var/space-changed 1)
+                                 (co/var-if var/space->shift 1)]
+                    :to [(co/key-mods :sft)]}
+
+                   {:from (co/key-any :spc)
+                    :conditions [(co/var-if var/space-changed 1)
+                                 (co/var-if var/space->command 1)]
+                    :to [(co/key-mods :cmd)]}]}
 
    {:description "spc+q ➡️ esc",
     :manipulators [{:from (co/sim {:keys [:spc :q]})
@@ -46,16 +45,16 @@
                     :to [(co/key-mods :ctrl :cmd)]}]}
 
    {:description "spc+r ➡️ opt+cmd+sft",
-    :manipulators [{:from (co/sim {:keys [:spc :r]})
-                    :to [(co/key-mods :opt :cmd :sft)]}]}
+    :manipulators [{:from (co/sim {:keys [:spc :e]})
+                    :to [(co/key-mods :ctrl :opt :sft)]}]}
 
    {:description "spc+t ➡️ ctrl+cmd+sft",
     :manipulators [{:from (co/sim {:keys [:spc :t]})
                     :to [(co/key-mods :ctrl :cmd :sft)]}]}
 
-   {:description "spc+a ➡️ ctrl+opt+cmd+sft",
+   {:description "spc+a ➡️ all + a",
     :manipulators [{:from (co/sim {:keys [:spc :a]})
-                    :to [(co/key-mods :ctrl :opt :cmd :sft)]}]}
+                    :to [(co/key-mods :a :all)]}]}
 
    {:description "spc+s ➡️ ctrl+opt",
     :manipulators [{:from (co/sim {:keys [:spc :s]})
@@ -102,6 +101,35 @@
   :rcf)
 
 
+  ;;  {:description "space first ➡️ ctrl+cmd"
+  ;;   :copy-flip true
+  ;;   :manipulators (concat (spc-mode {:from [:s]
+  ;;                                    :to [:ctrl :opt]}))}
+
+  ;;  {:description "spc+q ➡️ esc",
+  ;;   :manipulators (spc-mode {:from [:q]
+  ;;                            :to [:esc]})}
+
+  ;;  {:description "spc+w ➡️ ctrl+cmd+sft :: memory call",
+  ;;   :manipulators (spc-mode {:from [:w]})}
+
+  ;;  {:description "spc+e ➡️ ctrl+cmd :: window move"
+  ;;   :manipulators (spc-mode {:from [:e]
+  ;;                            :to [:ctrl :cmd]})}
+
+  ;;  {:description "spc+r ➡️ opt+cmd+sft",
+  ;;   :manipulators (spc-mode {:from [:r]
+  ;;                            :to [:ctrl :opt :sft]})}
+
+#_{:description "double-right-shift to show CLOCK"
+   :manipulators [{:from (co/key-any :rsft)
+                   :conditions [(co/var-if "right-shift" 1)]
+                   :to [(co/key-mods :act :ctrl :opt)]}
+
+                  {:from (co/key-any :rsft)
+                   :to [(co/set-var "right-shift" 1)
+                        (co/key-mods :rsft)]
+                   :to_delayed_action (co/delayed-action "right-shift" 0)}]}
 #_{:description "spcae ➡️ shift (다른 mods가 활성화된 경우에)"
    :manipulators [;;  delay 가 조금 있다. 이게 사용하다 보면 느껴질 것 같은데..
                   {:from (co/key-any :spc)
@@ -134,23 +162,23 @@
 
 
 
-#_{:description "right cmd (alone) ➡️ F13",
-   :copy-flip true
-   :manipulators [{:type "basic" {:description "spc+c ➡️ ctrl+cmd",
-                                  :manipulators [{:from (co/sim {:keys [:spc :c]})
-                                                  :to [(co/key-mods :ctrl :cmd)]}]}
-                   {:description "spc+c ➡️ ctrl+cmd",
-                    :manipulators [{:from (co/sim {:keys [:spc :c]})
-                                    :to [(co/key-mods :ctrl :cmd)]}]}
-                   {:description "spc+c ➡️ ctrl+cmd",
-                    :manipulators [{:from (co/sim {:keys [:spc :c]})
-                                    :to [(co/key-mods :ctrl :cmd)]}]}
-                   {:description "spc+c ➡️ ctrl+cmd",
-                    :manipulators [{:from (co/sim {:keys [:spc :c]})
-                                    :to [(co/key-mods :ctrl :cmd)]}]},
-                   :from (co/key-mods :rsft)
-                   :to (co/key-mods :rsft)
-                   :to_if_alone (co/key-code :F13)}]}
+;; #_{:description "right cmd (alone) ➡️ F13",
+;;    :copy-flip true
+;;    :manipulators [{:type "basic" {:description "spc+c ➡️ ctrl+cmd",
+;;                                   :manipulators [{:from (co/sim {:keys [:spc :c]})
+;;                                                   :to [(co/key-mods :ctrl :cmd)]}]}
+;;                    {:description "spc+c ➡️ ctrl+cmd",
+;;                     :manipulators [{:from (co/sim {:keys [:spc :c]})
+;;                                     :to [(co/key-mods :ctrl :cmd)]}]}
+;;                    {:description "spc+c ➡️ ctrl+cmd",
+;;                     :manipulators [{:from (co/sim {:keys [:spc :c]})
+;;                                     :to [(co/key-mods :ctrl :cmd)]}]}
+;;                    {:description "spc+c ➡️ ctrl+cmd",
+;;                     :manipulators [{:from (co/sim {:keys [:spc :c]})
+;;                                     :to [(co/key-mods :ctrl :cmd)]}]},
+;;                    :from (co/key-mods :rsft)
+;;                    :to (co/key-mods :rsft)
+;;                    :to_if_alone (co/key-code :F13)}]}
 
 ; (concat (spc-mode {:from [:q]
 ;;                    :to [:tab]})
@@ -193,3 +221,10 @@
 ;;                    :to [:opt :cmd :sft]})
 ;;         (spc-mode {:from :n
 ;;                    :to [:opt :cmd]}))
+;; #_{:description "spc+quote ➡️ cmd+ret",
+;;    :manipulators [{:from (co/sim {:keys [:spc :quote]})
+;;                    :to [(co/key-mods :ret :cmd)]}]}
+
+;; #_{:description "spc+ret ➡️ cmd+ret",
+;;    :manipulators [{:from (co/sim {:keys [:spc :ret]})
+;;                    :to [(co/key-mods :ret :cmd)]}]}

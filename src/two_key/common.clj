@@ -20,15 +20,13 @@
         :rsft "right_shift"} key (name key)))
 
 
-
-
-
 (defn key-code [{:keys [key mods lazy?]}]
   (merge
    {:key_code (key-map key)}
    (cond
      (nil? mods) nil
      (= :any mods) {:modifiers {:optional ["any"]}}
+     (= :all (first mods)) {:modifiers (map key-map [:ctrl :opt :cmd :sft])}
      :else {:modifiers (map key-map mods)})
    (when lazy?
      {:lazy true})))

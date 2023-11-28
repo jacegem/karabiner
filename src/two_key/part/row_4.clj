@@ -1,5 +1,7 @@
 (ns two-key.part.row-4
-  (:require [two-key.common :as co]))
+  (:require [two-key.common :as co]
+            [two-key.part.var :as var]))
+
 
 
 
@@ -8,32 +10,43 @@
   [;; capslock
    {:description "caps_lock ➡️ ctrl+opt",
     :manipulators [{:from (co/key-any :caps)
-                    :to [(co/set-var "spc->sft" 1)
+                    :to [(co/set-var var/space-changed 1)
+                         (co/set-var var/space->shift 1)
                          (co/key-mods :ctrl :opt)]
                     :to_if_alone (co/key-mods :esc)
-                    :to_after_key_up [(co/set-var "spc->sft" 0)]}]}
+                    :to_after_key_up [(co/set-var  var/space-changed 0)
+                                      (co/set-var  var/space->shift 0)]}]}
 
    {:description "s+d ➡️ ctrl+opt",
     :copy-flip true
     :manipulators [{:from (co/sim {:keys [:s :d]
-                                   :to_after_key_up [(co/set-var "spc->sft" 0)]})
-                    :to [(co/set-var "spc->sft" 1)
+                                   :to_after_key_up [(co/set-var  var/space-changed 0)
+                                                     (co/set-var  var/space->shift 0)]})
+                    :to [(co/set-var var/space-changed 1)
+                         (co/set-var var/space->shift 1)
                          (co/key-mods :ctrl :opt)]}]}
 
    {:description "s+f ➡️ ctrl+opt+sft",
-    :manipulators [{:from (co/sim {:keys [:s :f]})
-                    :to (co/key-mods :ctrl :opt :sft)}]}
+    :copy-flip true
+    :manipulators [{:from (co/sim {:keys [:s :f]
+                                   :to_after_key_up [(co/set-var  var/space-changed 0)
+                                                     (co/set-var  var/space->command 0)]})
+                    :to [(co/set-var var/space-changed 1)
+                         (co/set-var var/space->command 1)
+                         (co/key-mods :ctrl :opt :sft)]}]}
 
    {:description "d+f ➡️ opt+cmd :: symbol",
     :copy-flip true
     :manipulators [{:from (co/sim {:keys [:d :f]
-                                   :to_after_key_up [(co/set-var "spc->sft" 0)]})
-                    :to [(co/set-var "spc->sft" 1)
+                                   :to_after_key_up [(co/set-var  var/space-changed 0)
+                                                     (co/set-var  var/space->shift 0)]})
+                    :to [(co/set-var var/space-changed 1)
+                         (co/set-var var/space->shift 1)
                          (co/key-mods :opt :cmd)]}]}
     ;; '를 enter 로 변경한다.    
-   {:description "' ➡️ return"
-    :manipulators [{:from (co/key-any :quote)
-                    :to (co/key-mods :ret)}]}
+   #_{:description "' ➡️ return"
+      :manipulators [{:from (co/key-any :quote)
+                      :to (co/key-mods :ret)}]}
 
   ;;  end
    ])

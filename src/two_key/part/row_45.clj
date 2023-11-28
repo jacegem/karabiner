@@ -1,5 +1,6 @@
 (ns two-key.part.row-45
-  (:require [two-key.common :as co]))
+  (:require [two-key.common :as co]
+            [two-key.part.var :as var]))
 
 (def rules
   [{:description "a+s ➡️ cmd+s"
@@ -41,9 +42,11 @@
     :copy-flip true
     :manipulators [{:type "basic",
                     :from (co/sim {:keys [:s :c]
-                                   :to_after_key_up [(co/set-var "spc->sft" 0)]})
-                    :to [(co/set-var "spc->sft" 1)
-                         (co/key-mods :sft :opt :cmd)]}]}
+                                   :to_after_key_up [(co/set-var var/space-changed 0)
+                                                     (co/set-var var/space->shift 0)]})
+                    :to [(co/set-var var/space-changed 1)
+                         (co/set-var var/space->shift 1)
+                         (co/key-mods :ctrl :opt :cmd)]}]}
 
    {:description "s+v ➡️ ctrl+opt+cmd+sft"
     :copy-flip true
