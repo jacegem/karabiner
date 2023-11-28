@@ -47,7 +47,7 @@
     :manipulators [{:from (co/sim :z :x)
                     :to (co/key-mods :z :cmd)}]}
 
-   {:description "double-right-shift to show CLOCK"
+   {:description "double-right-shift to show CLOCK 1"
     :manipulators [{:from (co/key-any :rsft)
                     :conditions [(co/var-if "right-shift" 1)]
                     :to [(co/key-mods :act :ctrl :opt)]}

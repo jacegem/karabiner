@@ -10,12 +10,8 @@
   [;; capslock
    {:description "caps_lock ➡️ ctrl+opt",
     :manipulators [{:from (co/key-any :caps)
-                    :to [(co/set-var var/space-changed 1)
-                         (co/set-var var/space->shift 1)
-                         (co/key-mods :ctrl :opt)]
-                    :to_if_alone (co/key-mods :esc)
-                    :to_after_key_up [(co/set-var  var/space-changed 0)
-                                      (co/set-var  var/space->shift 0)]}]}
+                    :to [(co/key-mods :ctrl :opt)]
+                    :to_if_alone (co/key-mods :esc)}]}
 
    {:description "s+d ➡️ ctrl+opt",
     :copy-flip true

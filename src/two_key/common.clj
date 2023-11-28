@@ -67,7 +67,7 @@
                        key_up_order
                        key_up_when
                        to_after_key_up] :as _opt
-                :or {detect_key_down_uninterruptedly false
+                :or {detect_key_down_uninterruptedly true
                      key_down_order "insensitive"
                      key_up_order "insensitive"
                      key_up_when "all"

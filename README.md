@@ -8,7 +8,7 @@
 ![](https://i.imgur.com/9zXT1h4.png)
 ![](https://i.imgur.com/JnbzDvQ.png)
 ![](https://i.imgur.com/tByC2Ng.png)
-![](https://i.imgur.com/GWeGRGr.png)
+![](https://i.imgur.com/V7yDy9S.png)
 
 ## with spacebar (& caps)
 
@@ -21,5 +21,3 @@
 ```
 git clone https://github.com/jacegem/karabiner ~/.config/karabiner
 ```
-
-
