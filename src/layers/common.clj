@@ -27,7 +27,7 @@
   {:key_code (key-map key)
    :modifiers (merge {:optional (map key-map optional)}
                      (when mods
-                       {:mandatoy (map key-map mods)}))})
+                       {:mandatory (map key-map mods)}))})
 
 (defn to-key-code [{:keys [key mods lazy?]}]
   (merge

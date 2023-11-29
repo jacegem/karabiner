@@ -40,17 +40,12 @@
   [;; capslock
    {:description "#caps_lock ➡️ [nav-pressed] ➡️ ctrl+opt",
     :manipulators [{:from (co/key-any :caps)
-                    :to [(co/set-var var/layer-active 1)
-                         (co/set-var var/nav-pressed 1)]
-                    :to_after_key_up [(co/set-var var/layer-active 0)
-                                      (co/set-var var/nav-pressed 0)]
+                    :to [(co/key-mods :ctrl :opt)]
                     :to_if_alone [(co/key-mods :s :cmd)
                                   (co/key-mods :esc)]}]}
-
    {:description "#a "
     :manipulators (var/layer-key {:key :a}
-                                 {:nav (co/key-mods :a :cmd)
-                                  :sym (co/key-mods :act)
+                                 {:sym (co/key-mods :act)
                                   :num (co/key-mods :+)
                                   :func (co/key-mods :f11)
                                   :held-mode var/nav-pressed
@@ -58,24 +53,21 @@
 
    {:description "#s ",
     :manipulators (var/layer-key {:key :s}
-                                 {:nav (co/key-mods :s :cmd)
-                                  :sym (co/key-mods :act :sft)
+                                 {:sym (co/key-mods :act :sft)
                                   :num (co/key-mods :4)
                                   :func (co/key-mods :f4)
                                   :mouse (co/mouse-pos :y-)})}
 
    {:description "#d ",
     :manipulators (var/layer-key {:key :d}
-                                 {:nav (co/key-mods :d :cmd)
-                                  :sym (co/key-mods :1 :sft)
+                                 {:sym (co/key-mods :1 :sft)
                                   :num (co/key-mods :5)
                                   :func (co/key-mods :f5)
                                   :mouse (co/mouse-pos :x-)})}
 
    {:description "#f ",
     :manipulators (var/layer-key {:key :f}
-                                 {:nav (co/key-mods :f :cmd)
-                                  :sym (co/key-mods :act :sft)
+                                 {:sym (co/key-mods :act :sft)
                                   :num (co/key-mods :4)
                                   :func (co/key-mods :f4)
                                   :mouse (co/mouse-pos :x)})}
@@ -83,51 +75,54 @@
    {:description "#f + shift",
     :manipulators (var/layer-key {:key :f
                                   :mods [:sft]}
-                                 {:nav (co/key-mods :f :cmd :sft)
-                                  :sym (co/key-mods :act :sft)
+                                 {:sym (co/key-mods :act :sft)
                                   :mouse (co/mouse-pos :x {:fast 2})})}
 
    {:description "#h ",
     :manipulators (var/layer-key {:key :h}
-                                 {:nav (co/key-mods :home)
-                                  :sym (co/key-mods :equal_sign :sft)
+                                 {:sym (co/key-mods :quote :sft)
                                   :mouse (co/mouse-screen-center 1)})}
 
    {:description "#j "
     :manipulators (var/layer-key {:key :j}
-                                 {:nav (co/key-mods :left_arrow)
-                                  :sym (co/key-mods :9 :sft)
+                                 {:sym (co/key-mods :9 :sft)
                                   :mouse (co/key-mods :left_arrow)})}
 
    {:description "#k "
     :manipulators (var/layer-key {:key :k}
-                                 {:nav (co/key-mods :down_arrow)
-                                  :sym (co/key-mods :open_bracket)})}
+                                 {:sym (co/key-mods :open_bracket)})}
 
    {:description "#l "
     :manipulators (var/layer-key {:key :l}
-                                 {:nav (co/key-mods :right_arrow)
-                                  :sym (co/key-mods :open_bracket :sft)})}
+                                 {:sym (co/key-mods :open_bracket :sft)})}
 
    {:description "#semicolon "
-    :manipulators (var/layer-key {:key :semicolon}
-                                 {:nav (co/key-mods :end)
-                                  :sym (co/key-mods :quote :sft)})}
+    :manipulators [{:from (co/from-key-code {:key :semicolon
+                                             :optional [:ctrl :opt :cmd]})
+                    :to [(co/set-var var/layer-active 1)
+                         (co/set-var var/num-pressed 1)]
+                    :to_after_key_up [(co/set-var var/layer-active 0)
+                                      (co/set-var var/num-pressed 0)]
+                    :to_if_alone (co/key-mods :semicolon :sft)}]}
+
+   {:description "#semicolon shift "
+    :manipulators [{:from (co/from-key-code {:key :semicolon
+                                             :mods [:shift]})
+                    :to [(co/key-mods :semicolon)]}]}
 
    {:description "#quote",
     :manipulators [{:from (co/key-any :quote)
-                    :to [(co/set-var var/layer-active 1)
-                         (co/set-var var/nav-pressed 1)]
-                    :to_after_key_up [(co/set-var var/layer-active 0)
-                                      (co/set-var var/nav-pressed 0)]
+                    :to [(co/key-mods :ctrl :opt)]
                     :to_if_alone (co/key-mods :quote)}]}
 
-  ;;  end
+  ;;  end :;:;:;
    ])
 
 
 (comment
-
+  {:from (co/from-key-code {:key :semicolon
+                            :mods [:sft]})
+   :to [(co/key-mods :semicolon)]}
 
   {:description "s+d ➡️ ctrl+opt",
    :manipulators [{:from (co/sim {:keys [:s :d]

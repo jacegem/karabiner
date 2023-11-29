@@ -49,39 +49,28 @@
                     :to (co/key-mods :z :cmd)}]}])
 
 (def rules
-  [{:description "left-shift ➡️ bspc"
-    :manipulators [{:from (co/key-any :sft)
-                    :to (co/key-code {:key :sft
-                                      :lazy? true})
-                    :to_if_alone (co/key-mods :bspc)}]}
-
-
-   {:description "z ",
+  [{:description "z ",
     :manipulators (var/layer-key {:key :z}
-                                 {:nav (co/key-mods :z :cmd)
-                                  :sym (co/key-mods :act :sft)
+                                 {:sym (co/key-mods :act :sft)
                                   :num (co/key-mods :0)
                                   :func (co/key-mods :f10)
                                   :mouse (co/mouse-pos :h-)})}
 
    {:description "x ",
     :manipulators (var/layer-key {:key :x}
-                                 {:nav (co/key-mods :x :cmd)
-                                  :sym (co/key-mods :1 :sft)
-                                  :num (co/key-mods :0)
+                                 {:sym (co/key-mods :1 :sft)
+                                  :num (co/key-mods :1)
                                   :func (co/key-mods :f10)
                                   :mouse (co/mouse-pos :h-)})}
    {:description "c ",
     :manipulators (var/layer-key {:key :c}
-                                 {:nav (co/key-mods :c :cmd)
-                                  :sym (co/key-mods :2 :sft)
+                                 {:sym (co/key-mods :2 :sft)
                                   :num (co/key-mods :2)
                                   :mouse (co/mouse-pos :v-)})}
 
    {:description "#v ",
     :manipulators (var/layer-key {:key :v}
-                                 {:nav (co/key-mods :v :cmd)
-                                  :sym (co/key-mods :3 :sft)
+                                 {:sym (co/key-mods :3 :sft)
                                   :num (co/key-mods :3)
                                   :mouse (co/mouse-pos :v)})}
 
@@ -96,25 +85,29 @@
 
    {:description "#m ",
     :manipulators (var/layer-key {:key :m}
-                                 {:nav (co/key-mods :page_up)
-                                  :sym (co/key-mods :0 :sft)
+                                 {:sym (co/key-mods :0 :sft)
                                   :mouse (co/key-mods :page_up)})}
 
    {:description "#comma ",
     :manipulators (var/layer-key {:key :comma}
-                                 {:nav (co/key-mods :page_down)
-                                  :sym (co/key-mods :close_bracket)
+                                 {:sym (co/key-mods :close_bracket)
                                   :mouse (co/key-mods :page_down)})}
    {:description "#period ",
     :manipulators (var/layer-key {:key :period}
-                                 {:nav (co/key-mods :open_bracket :cmd)
-                                  :sym (co/key-mods :close_bracket :sft)
+                                 {:sym (co/key-mods :close_bracket :sft)
                                   :mouse (co/key-mods :page_down)})}
 
    {:description "#slash ",
     :manipulators (var/layer-key {:key :slash}
-                                 {:nav (co/key-mods :close_bracket :cmd)
-                                  :sym (co/key-mods :slash)})}
+                                 {:sym (co/key-mods :slash)})}
+
+   {:description "#slash "
+    :manipulators [{:from (co/key-any :slash)
+                    :to [(co/set-var var/layer-active 1)
+                         (co/set-var var/func-pressed 1)]
+                    :to_after_key_up [(co/set-var var/layer-active 0)
+                                      (co/set-var var/func-pressed 0)]
+                    :to_if_alone (co/key-mods :semicolon)}]}
 
    {:description "right-shift ➡️ enter"
     :manipulators [{:from (co/key-any :rsft)

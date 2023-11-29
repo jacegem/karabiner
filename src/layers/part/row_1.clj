@@ -48,8 +48,7 @@
 
    {:description "#q"
     :manipulators (var/layer-key {:key :q}
-                                 {:nav (co/key-mods :delete_or_backspace)
-                                  :sym (co/key-mods :tab :sft)
+                                 {:sym (co/key-mods :tab :sft)
                                   :num (co/key-mods :hyphen)
                                   :func (co/key-mods :f12)
                                   :mouse (co/mouse-button :middle)
@@ -57,54 +56,46 @@
                                   :held-to (co/key-mods :sft)})}
    {:description "w"
     :manipulators (var/layer-key {:key :w}
-                                 {:nav (co/key-mods :w :cmd)
-                                  :sym (co/key-mods :7 :sft)
+                                 {:sym (co/key-mods :7 :sft)
                                   :num (co/key-mods :7)
                                   :func (co/key-mods :f7)
                                   :mouse (co/mouse-button :left)})}
 
    {:description "e"
     :manipulators (var/layer-key {:key :e}
-                                 {:nav (co/key-mods :f1)
-                                  :sym (co/key-mods :8 :sft)
+                                 {:sym (co/key-mods :8 :sft)
                                   :num (co/key-mods :8)
                                   :func (co/key-mods :f8)
                                   :mouse (co/mouse-pos :y)})}
 
    {:description "r"
     :manipulators (var/layer-key {:key :r}
-                                 {:nav (co/key-mods :f2)
-                                  :sym (co/key-mods :4 :sft)
+                                 {:sym (co/key-mods :4 :sft)
                                   :num (co/key-mods :9)
                                   :func (co/key-mods :f9)
                                   :mouse (co/mouse-button :right)})}
 
    {:description "y"
     :manipulators (var/layer-key {:key :r}
-                                 {:nav (co/key-mods :caps)
-                                  :sym (co/key-mods :5 :sft)
+                                 {:sym (co/key-mods :5 :sft)
                                   :num (co/key-mods :slash)
                                   :mouse (co/mouse-button :middle)})}
 
    {:description "u "
     :manipulators (var/layer-key {:key :u}
-                                 {:nav (co/key-mods :delete_or_backspace)
-                                  :sym (co/key-mods :open_bracket)
+                                 {:sym (co/key-mods :open_bracket)
                                   :num (co/key-mods :hyphen)})}
    {:description "i "
     :manipulators (var/layer-key {:key :i}
-                                 {:nav (co/key-mods :up_arrow)
-                                  :sym (co/key-mods :hyphen)})}
+                                 {:sym (co/key-mods :hyphen)})}
 
    {:description "o "
     :manipulators (var/layer-key {:key :o}
-                                 {:nav (co/key-mods :delete_forward)
-                                  :sym (co/key-mods :equal_sign)})}
+                                 {:sym (co/key-mods :equal_sign)})}
 
    {:description "p "
     :manipulators (var/layer-key {:key :p}
-                                 {:nav (co/key-mods :p :cmd)
-                                  :sym (co/key-mods :equal_sign :sft)
+                                 {:sym (co/key-mods :equal_sign :sft)
                                   :held-mode var/sym-pressed
                                   :held-to (co/key-mods :sft)})}
    {:description "#open_bracket "
@@ -114,7 +105,6 @@
                     :to_after_key_up [(co/set-var var/layer-active 0)
                                       (co/set-var var/sym-pressed 0)]
                     :to_if_alone (co/key-mods :open_bracket)}]}
-
 
   ;;  end
    ])

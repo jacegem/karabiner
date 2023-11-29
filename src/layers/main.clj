@@ -10,8 +10,8 @@
             [layers.part.row-fn :as row-fn]))
 #_(remove-ns 'layers.main)
 
-(defn update-type [manipulator]
-  (update manipulator :type (fnil identity "basic")))
+#_(defn update-type [manipulator]
+    (update manipulator :type (fnil identity "basic")))
 
 
 
@@ -28,31 +28,32 @@
            profile))
        profiles))
 
-
+(defn update-type [manipulators]
+  (map #(update % :type (fnil identity "basic"))
+       manipulators))
 
 
 (def rules
-  (let [left-rules (->> (concat row-fn/rules
-                                row-1/sim-rules
-                                row-2/sim-rules
-                                row-3/sim-rules
-                                row-4/sim-rules
-                                row-12/sim-rules
-                                row-23/sim-rules
-                                row-1/rules
-                                row-2/rules
-                                row-12/rules
-                                row-4/rules
-                                row-23/rules
-                                row-3/rules
-                                row-4/rules)
-                        (map #(update % :manipulators
-                                      (fn [manipulators]
-                                        (map update-type manipulators)))))
+  (let [left-rules (concat row-fn/rules
+                           row-1/sim-rules
+                           row-2/sim-rules
+                           row-3/sim-rules
+                           row-4/sim-rules
+                           row-12/sim-rules
+                           row-23/sim-rules)
         right-rules (->> left-rules
                          (filter #(= true (:copy-flip %)))
-                         flip/copy-flip)]
-    (concat left-rules right-rules)))
+                         flip/copy-flip)
+        single-rules (concat row-1/rules
+                             row-2/rules
+                             row-12/rules
+                             row-4/rules
+                             row-23/rules
+                             row-3/rules
+                             row-4/rules)]
+    (->> (concat left-rules right-rules single-rules)
+         (map #(update % :manipulators update-type))
+         (map #(dissoc % :copy-flip)))))
 
 (defn set-configs
   ([] (set-configs rules))
