@@ -13,6 +13,11 @@
                     :to [(co/key-mods :ctrl :opt)]
                     :to_if_alone (co/key-mods :esc)}]}
 
+   {:description "a ",
+    :manipulators [{:from (co/key-any :a)
+                    :conditions [(co/var-unless var/layer-changed 1)]
+                    :to [(co/key-mods :a)]}]}
+
    {:description "s+d ➡️ ctrl+opt",
     :copy-flip true
     :manipulators [{:from (co/sim {:keys [:s :d]

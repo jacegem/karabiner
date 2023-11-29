@@ -1,10 +1,9 @@
-(ns two-key.part.row-34
-  (:require [two-key.common :as co]
-            [two-key.part.var :as var]))
+(ns layers.part.row-12
+  (:require [layers.common :as co]
+            [layers.var :as var]))
 
-(def rules
-  [;;  w
-   {:description "w+f ➡️ ctrl+cmd+sft :: macro call"
+(def sim-rules
+  [{:description "w+f ➡️ ctrl+cmd+sft :: macro call"
     :copy-flip true
     :manipulators [{:from  (co/sim :w :f)
                     :to [(co/key-mods :ctrl :cmd :sft)]}]}
@@ -22,6 +21,14 @@
     :copy-flip true
     :manipulators [{:from (co/sim :e :s)
                     :to [(co/key-mods :tab :ctrl :opt)]}]}])
+
+(def rules
+  [;;  w
+
+
+
+  ;;  end
+   ])
 
 
 

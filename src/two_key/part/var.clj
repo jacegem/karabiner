@@ -6,3 +6,6 @@
 
 (def space->shift "space->shift")
 (def space->command "space->command")
+
+
+(def layer-changed "layer-changed")
