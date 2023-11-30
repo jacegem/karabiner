@@ -3385,88 +3385,6 @@
             ]
           },
           {
-            "description": "#semicolon ",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "semicolon",
-                  "modifiers": {
-                    "optional": [
-                      "left_control",
-                      "left_option",
-                      "left_command"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "set_variable": {
-                      "name": "space-changed",
-                      "value": 1
-                    }
-                  },
-                  {
-                    "set_variable": {
-                      "name": "space->shift",
-                      "value": 1
-                    }
-                  },
-                  {
-                    "key_code": "left_control",
-                    "modifiers": [
-                      "left_option"
-                    ]
-                  }
-                ],
-                "to_after_key_up": [
-                  {
-                    "set_variable": {
-                      "name": "space-changed",
-                      "value": 0
-                    }
-                  },
-                  {
-                    "set_variable": {
-                      "name": "space->shift",
-                      "value": 0
-                    }
-                  }
-                ],
-                "to_if_alone": {
-                  "key_code": "semicolon",
-                  "modifiers": [
-                    "left_shift"
-                  ]
-                },
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "#semicolon shift ",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "semicolon",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ],
-                    "mandatory": [
-                      "shift"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "semicolon"
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
             "description": "#quote",
             "manipulators": [
               {
@@ -3474,9 +3392,7 @@
                   "key_code": "quote",
                   "modifiers": {
                     "optional": [
-                      "left_control",
-                      "left_option",
-                      "left_command"
+                      "any"
                     ]
                   }
                 },
@@ -3515,35 +3431,8 @@
                   }
                 ],
                 "to_if_alone": {
-                  "key_code": "quote",
-                  "modifiers": [
-                    "left_shift"
-                  ]
+                  "key_code": "quote"
                 },
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "#quote shift",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "quote",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ],
-                    "mandatory": [
-                      "shift"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "quote"
-                  }
-                ],
                 "type": "basic"
               }
             ]

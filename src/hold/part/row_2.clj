@@ -49,35 +49,26 @@
                                   (co/key-mods :esc)]}]}
 
 
-   {:description "#semicolon "
-    :manipulators [{:from (co/from-key-code {:key :semicolon
-                                             :optional [:ctrl :opt :cmd]})
-                    :to [(co/set-var var/space-changed 1)
-                         (co/set-var var/space->shift 1)
-                         (co/key-mods :ctrl :opt)]
-                    :to_after_key_up [(co/set-var var/space-changed 0)
-                                      (co/set-var var/space->shift 0)]
-                    :to_if_alone (co/key-mods :semicolon :sft)}]}
+   #_{:description "#semicolon "
+      :manipulators [{:from (co/key-any :semicolon)
+                      :to [(co/set-var var/space-changed 1)
+                           (co/set-var var/space->shift 1)
+                           (co/key-mods :ctrl :opt)]
+                      :to_after_key_up [(co/set-var var/space-changed 0)
+                                        (co/set-var var/space->shift 0)]
+                      :to_if_alone (co/key-mods :semicolon)}]}
 
-   {:description "#semicolon shift "
-    :manipulators [{:from (co/from-key-code {:key :semicolon
-                                             :mods [:shift]})
-                    :to [(co/key-mods :semicolon)]}]}
 
    {:description "#quote",
-    :manipulators [{:from (co/from-key-code {:key :quote
-                                             :optional [:ctrl :opt :cmd]})
+    :manipulators [{:from (co/key-any :quote)
                     :to [(co/set-var var/space-changed 1)
                          (co/set-var var/space->shift 1)
                          (co/key-mods :ctrl :cmd)]
                     :to_after_key_up [(co/set-var var/space-changed 0)
                                       (co/set-var var/space->shift 0)]
-                    :to_if_alone (co/key-mods :quote :sft)}]}
+                    :to_if_alone (co/key-mods :quote)}]}
 
-   {:description "#quote shift",
-    :manipulators [{:from (co/from-key-code {:key :quote
-                                             :mods [:shift]})
-                    :to [(co/key-mods :quote)]}]}
+
 
   ;;  end :;:;:;
    ])
@@ -95,10 +86,19 @@
                         (co/key-mods :ctrl :opt)]}]}
 
   :rcf)
-
+#_{:description "#quote shift",
+   :manipulators [{:from (co/from-key-code {:key :quote
+                                            :mods [:shift]})
+                   :to [(co/key-mods :quote)]}]}
 #_{:description "' ➡️ return"
    :manipulators [{:from (co/key-any :quote)
                    :to (co/key-mods :ret)}]}
+
+#_{:description "#semicolon shift "
+   :manipulators [{:from (co/from-key-code {:key :semicolon
+                                            :mods [:shift]})
+                   :to [(co/key-mods :semicolon)]}]}
+
   ;;  빠르게 입력하는 경우엔 입력되지 않는 문제s가 있다.
   ;;  #_{description "s ➡️ caps_lock ➡️ left_control",
   ;;     :manipulators [{
