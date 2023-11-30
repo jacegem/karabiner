@@ -13,7 +13,7 @@
           "basic.simultaneous_threshold_milliseconds": 30,
           "basic.to_delayed_action_delay_milliseconds": 500,
           "basic.to_if_alone_timeout_milliseconds": 1000,
-          "basic.to_if_held_down_threshold_milliseconds": 500,
+          "basic.to_if_held_down_threshold_milliseconds": 100,
           "mouse_motion_to_scroll.speed": 100
         },
         "rules": [
@@ -3549,6 +3549,353 @@
             ]
           },
           {
+            "description": "double left-control ➡️ with spacebar",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "left_control",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "name": "control-pressed",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "to": [
+                  {
+                    "key_code": "spacebar",
+                    "modifiers": [
+                      "left_control"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "left_control",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "control-pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "left_control"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "control-pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "control-pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "double left-option ➡️ with spacebar",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "left_option",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "name": "option-pressed",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "to": [
+                  {
+                    "key_code": "spacebar",
+                    "modifiers": [
+                      "left_option"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "left_option",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "option-pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "left_option"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "option-pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "option-pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "double left-command ➡️ with spacebar - 2",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "left_command",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "name": "command-pressed",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "to": [
+                  {
+                    "key_code": "spacebar",
+                    "modifiers": [
+                      "left_command"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "left_command",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "command-pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "left_command"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "command-pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "command-pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "spc->sft (다른 mods가 활성화된 경우에) 1",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "name": "space-pressed",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "to": [
+                  {
+                    "key_code": "spacebar",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "name": "space-changed",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "space-pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "spacebar"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "space-pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "space-pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "name": "space-changed",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "space->shift",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "to": [
+                  {
+                    "key_code": "left_shift"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "name": "space-changed",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "space->command",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "to": [
+                  {
+                    "key_code": "left_command"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
             "description": "left-shift ➡️ show modal ",
             "manipulators": [
               {
@@ -3620,6 +3967,106 @@
             ]
           },
           {
+            "description": "#comma ",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "comma",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "space-changed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "space->shift",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "left_command"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "space-changed",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "space->shift",
+                      "value": 0
+                    }
+                  }
+                ],
+                "to_if_alone": {
+                  "key_code": "comma"
+                },
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "#period ",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "space-changed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "space->shift",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "left_option"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "space-changed",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "space->shift",
+                      "value": 0
+                    }
+                  }
+                ],
+                "to_if_alone": {
+                  "key_code": "period"
+                },
+                "type": "basic"
+              }
+            ]
+          },
+          {
             "description": "#slash ",
             "manipulators": [
               {
@@ -3645,11 +4092,7 @@
                     }
                   },
                   {
-                    "key_code": "left_control",
-                    "modifiers": [
-                      "left_option",
-                      "left_command"
-                    ]
+                    "key_code": "left_control"
                   }
                 ],
                 "to_after_key_up": [

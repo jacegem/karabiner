@@ -37,11 +37,10 @@
                          flip/copy-flip)
         single-rules (concat row-1/rules
                              row-2/rules
-                             row-12/rules
-                             row-4/rules
-                             row-23/rules
                              row-3/rules
-                             row-4/rules)]
+                             row-4/rules
+                             row-12/rules
+                             row-23/rules)]
     (->> (concat left-rules right-rules single-rules)
          (map #(update % :manipulators update-type))
          (map #(dissoc % :copy-flip)))))

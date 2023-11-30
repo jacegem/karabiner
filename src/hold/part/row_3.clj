@@ -62,29 +62,29 @@
                          (co/key-mods :sft)]
                     :to_delayed_action (co/delayed-action var/shift-pressed 0)}]}
 
-   {:description "#comma ",
-    :manipulators [{:from (co/key-any :comma)
-                    :to [(co/set-var var/space-changed 1)
-                         (co/set-var var/space->shift 1)
-                         (co/key-mods :cmd)]
-                    :to_after_key_up [(co/set-var var/space-changed 0)
-                                      (co/set-var var/space->shift 0)]
-                    :to_if_alone (co/key-mods :comma)}]}
+   #_{:description "#comma ",
+      :manipulators [{:from (co/key-any :comma)
+                      :to [(co/set-var var/space-changed 1)
+                           (co/set-var var/space->shift 1)
+                           (co/key-mods :cmd)]
+                      :to_after_key_up [(co/set-var var/space-changed 0)
+                                        (co/set-var var/space->shift 0)]
+                      :to_if_alone (co/key-mods :comma)}]}
 
-   {:description "#period ",
-    :manipulators [{:from (co/key-any :period)
-                    :to [(co/set-var var/space-changed 1)
-                         (co/set-var var/space->shift 1)
-                         (co/key-mods :opt)]
-                    :to_after_key_up [(co/set-var var/space-changed 0)
-                                      (co/set-var var/space->shift 0)]
-                    :to_if_alone (co/key-mods :period)}]}
+   #_{:description "#period ",
+      :manipulators [{:from (co/key-any :period)
+                      :to [(co/set-var var/space-changed 1)
+                           (co/set-var var/space->shift 1)
+                           (co/key-mods :opt)]
+                      :to_after_key_up [(co/set-var var/space-changed 0)
+                                        (co/set-var var/space->shift 0)]
+                      :to_if_alone (co/key-mods :period)}]}
 
    {:description "#slash ",
     :manipulators [{:from (co/key-any :slash)
                     :to [(co/set-var var/space-changed 1)
                          (co/set-var var/space->shift 1)
-                         (co/key-mods :ctrl)]
+                         (co/key-mods :ctrl :opt :cmd)]
                     :to_after_key_up [(co/set-var var/space-changed 0)
                                       (co/set-var var/space->shift 0)]
                     :to_if_alone (co/key-mods :slash)}]}
