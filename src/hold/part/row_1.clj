@@ -59,7 +59,7 @@
                          (co/key-mods :ctrl :opt :cmd)]
                     :to_after_key_up [(co/set-var var/space-changed 0)
                                       (co/set-var var/space->shift 0)]
-                    :to_if_alone (co/key-mods :open_bracket)}]}
+                    :to_if_alone (co/key-mods :close_bracket)}]}
 
 
 

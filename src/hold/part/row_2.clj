@@ -36,17 +36,18 @@
                          (co/set-var var/space->shift 1)
                          (co/key-mods :opt :cmd)]}]}])
 
+
+
+
+
 (def rules
   [;; capslock
-   {:description "#caps_lock ➡️ ctrl+opt",
+   {:description "#caps_lock ➡️ ctrl+opt / space 제외",
     :manipulators [{:from (co/key-any :caps)
-                    :to [(co/set-var var/space-changed 1)
-                         (co/set-var var/space->shift 1)
-                         (co/key-mods :ctrl :opt)]
-                    :to_after_key_up [(co/set-var var/space-changed 0)
-                                      (co/set-var var/space->shift 0)]
+                    :to [(co/key-mods :ctrl :opt)]
                     :to_if_alone [(co/key-mods :s :cmd)
                                   (co/key-mods :esc)]}]}
+
 
    {:description "#semicolon "
     :manipulators [{:from (co/from-key-code {:key :semicolon
@@ -64,13 +65,19 @@
                     :to [(co/key-mods :semicolon)]}]}
 
    {:description "#quote",
-    :manipulators [{:from (co/key-any :quote)
+    :manipulators [{:from (co/from-key-code {:key :quote
+                                             :optional [:ctrl :opt :cmd]})
                     :to [(co/set-var var/space-changed 1)
                          (co/set-var var/space->shift 1)
                          (co/key-mods :ctrl :cmd)]
                     :to_after_key_up [(co/set-var var/space-changed 0)
                                       (co/set-var var/space->shift 0)]
-                    :to_if_alone (co/key-mods :quote)}]}
+                    :to_if_alone (co/key-mods :quote :sft)}]}
+
+   {:description "#quote shift",
+    :manipulators [{:from (co/from-key-code {:key :quote
+                                             :mods [:shift]})
+                    :to [(co/key-mods :quote)]}]}
 
   ;;  end :;:;:;
    ])

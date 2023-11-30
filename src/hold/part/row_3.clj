@@ -48,8 +48,21 @@
     :manipulators [{:from (co/sim :z :x)
                     :to (co/key-mods :z :cmd)}]}])
 
+
+
+
 (def rules
-  [{:description "#comma ",
+  [{:description "left-shift ➡️ show modal "
+    :manipulators [{:from (co/key-any :sft)
+                    :conditions [(co/var-if var/shift-pressed 1)]
+                    :to [(co/key-mods :spc :sft)]}
+
+                   {:from (co/key-any :sft)
+                    :to [(co/set-var var/shift-pressed 1)
+                         (co/key-mods :sft)]
+                    :to_delayed_action (co/delayed-action var/shift-pressed 0)}]}
+
+   {:description "#comma ",
     :manipulators [{:from (co/key-any :comma)
                     :to [(co/set-var var/space-changed 1)
                          (co/set-var var/space->shift 1)
