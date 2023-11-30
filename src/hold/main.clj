@@ -1,14 +1,14 @@
-(ns layers.main
+(ns hold.main
   (:require [clojure.data.json :as json]
-            [layers.flip :as flip]
-            [layers.part.row-1 :as row-1]
-            [layers.part.row-12 :as row-12]
-            [layers.part.row-2 :as row-2]
-            [layers.part.row-23 :as row-23]
-            [layers.part.row-3 :as row-3]
-            [layers.part.row-4 :as row-4]
-            [layers.part.row-fn :as row-fn]))
-#_(remove-ns 'layers.main)
+            [hold.flip :as flip]
+            [hold.part.row-1 :as row-1]
+            [hold.part.row-12 :as row-12]
+            [hold.part.row-2 :as row-2]
+            [hold.part.row-23 :as row-23]
+            [hold.part.row-3 :as row-3]
+            [hold.part.row-4 :as row-4]
+            [hold.part.row-fn :as row-fn]))
+#_(remove-ns 'hold.main)
 
 
 
