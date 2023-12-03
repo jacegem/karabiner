@@ -90,15 +90,13 @@
                     :to_if_alone (co/key-mods :slash)}]}
 
 
-   {:description "right-shift ➡️ enter"
-    :manipulators [{:from (co/key-any :rsft)
-                    :to (co/key-code {:key :rsft
-                                      :lazy? true})
-                    :to_if_alone (co/key-mods :ret)}]}]
+   #_{:description "right-shift ➡️ enter"
+      :manipulators [{:from (co/key-any :rsft)
+                      :to (co/key-code {:key :rsft})
+                      :to_if_alone (co/key-mods :ret)}]}]
 
   ;; end
   )
-
 
 
 

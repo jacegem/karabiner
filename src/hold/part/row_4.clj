@@ -76,7 +76,7 @@
 
 
 (def rules
-  [{:description "double left-control ➡️ with spacebar"
+  [{:description "ctrl ➡️ with spacebar"
     :manipulators [{:from (co/key-any :ctrl)
                     :conditions [(co/var-if var/control-pressed 1)]
                     :to [(co/key-mods :spc :ctrl)]}
@@ -86,7 +86,7 @@
                          (co/key-mods :ctrl)]
                     :to_delayed_action (co/delayed-action var/control-pressed 0)}]}
 
-   {:description "double left-option ➡️ with spacebar"
+   {:description "opt ➡️ with spacebar"
     :manipulators [{:from (co/key-any :opt)
                     :conditions [(co/var-if var/option-pressed 1)]
                     :to [(co/key-mods :spc :opt)]}
@@ -96,7 +96,7 @@
                          (co/key-mods :opt)]
                     :to_delayed_action (co/delayed-action var/option-pressed 0)}]}
 
-   {:description "double left-command ➡️ with spacebar - 2"
+   {:description "cmdl ➡️ with spacebar"
     :manipulators [{:from (co/key-any :cmd)
                     :conditions [(co/var-if var/command-pressed 1)]
                     :to [(co/key-mods :spc :cmd)]}
@@ -106,26 +106,45 @@
                          (co/key-mods :cmd)]
                     :to_delayed_action (co/delayed-action var/command-pressed 0)}]}
 
-   {:description "spc->sft (다른 mods가 활성화된 경우에) 1"
-    :manipulators [{:from (co/key-any :spc)
-                    :conditions [(co/var-if var/space-pressed 1)]
-                    :to [(co/key-mods :spc :sft)]}
-
-                   {:from (co/key-any :spc)
-                    :conditions [(co/var-if var/space-changed 0)]
+   #_{:description "ctrl+opt+spc 가 단독으로 눌리면, 한/영 변환"
+    :manipulators [{:from (co/from-key-code {:key :ctrl
+                                             :mandatory [:ctrl :opt]})
                     :to [(co/set-var var/space-pressed 1)
-                         (co/key-mods :spc)]
-                    :to_delayed_action (co/delayed-action var/space-pressed 0)}
+                         (co/key-mods :sft)]
+                    :to_if_alone (co/key-mods :spc :ctrl :opt)}]}
+
+   {:description "spc->sft (다른 mods가 활성화된 경우에)"
+    :manipulators [#_{:description "두 번째 눌리는 경우에는 F13(한/영) 키로 동작한다."
+                      :from (co/key-any :spc)
+                      :conditions [(co/var-if var/space-pressed 1)]
+                      :to [(co/key-mods :ctrl :opt :spc)]}
+
+                   #_{:from (co/key-any :spc)
+                      :conditions [(co/var-if var/space-changed 0)]
+                      :to [(co/set-var var/space-pressed 1)]
+                      :to_if_alone [(co/key-mods :spc)]
+                      :to_delayed_action (co/delayed-action var/space-pressed 0)}
+
+                   #_{:from (co/from-key-code {:key :ctrl
+                                             :mandatory [:ctrl :opt]})
+                    :to [(co/set-var var/space-pressed 1)
+                         (co/key-mods :sft)]
+                    :to_if_alone (co/key-mods :spc :ctrl :opt)}
 
                    {:from (co/key-any :spc)
                     :conditions [(co/var-if var/space-changed 1)
                                  (co/var-if var/space->shift 1)]
-                    :to [(co/key-mods :sft)]}
+                    :to [(co/set-var var/space-pressed 1)
+                         (co/key-mods :sft)]
+                    :to_if_alone (co/key-mods :spc :ctrl :opt)
+                    :to_delayed_action (co/delayed-action var/space-pressed 0)}
 
                    {:from (co/key-any :spc)
                     :conditions [(co/var-if var/space-changed 1)
                                  (co/var-if var/space->command 1)]
-                    :to [(co/key-mods :cmd)]}]}
+                    :to [(co/set-var var/space-pressed 1)
+                         (co/key-mods :cmd)]
+                    :to_delayed_action (co/delayed-action var/space-pressed 0)}]}
   ;;  end
    ])
 

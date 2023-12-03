@@ -59,14 +59,23 @@
                       :to_if_alone (co/key-mods :semicolon)}]}
 
 
-   {:description "#quote",
-    :manipulators [{:from (co/key-any :quote)
-                    :to [(co/set-var var/space-changed 1)
-                         (co/set-var var/space->shift 1)
-                         (co/key-mods :ctrl :cmd)]
-                    :to_after_key_up [(co/set-var var/space-changed 0)
-                                      (co/set-var var/space->shift 0)]
-                    :to_if_alone (co/key-mods :quote)}]}
+   {:description "#quote - 2",
+    :manipulators [{:from (co/from-key-code {:key :quote
+                                             :optional [:ctrl :opt :cmd]})
+                    :to [(co/key-mods :quote :sft)]}
+
+                   {:from (co/from-key-code {:key :quote
+                                             :mandatory [:shift]})
+                    :to [(co/key-mods :quote)]}]}
+
+   #_{:description "#quote",
+      :manipulators [{:from (co/key-any :quote)
+                      :to [(co/set-var var/space-changed 1)
+                           (co/set-var var/space->shift 1)
+                           (co/key-mods :ctrl :opt)]
+                      :to_after_key_up [(co/set-var var/space-changed 0)
+                                        (co/set-var var/space->shift 0)]
+                      :to_if_alone (co/key-mods :quote)}]}
 
 
 

@@ -22,12 +22,12 @@
 
 
 
-(defn from-key-code [{:keys [key mods optional]
+(defn from-key-code [{:keys [key mandatory optional]
                       :or {optional ["any"]}}]
   {:key_code (key-map key)
    :modifiers (merge {:optional (map key-map optional)}
-                     (when mods
-                       {:mandatory (map key-map mods)}))})
+                     (when mandatory
+                       {:mandatory (map key-map mandatory)}))})
 
 (defn to-key-code [{:keys [key mods lazy?]}]
   (merge

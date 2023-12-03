@@ -7,7 +7,6 @@
 (def sim-rules
   [;  w
    {:description "w+e ➡️ escape"
-    :copy-flip true
     :manipulators [{:from (co/sim :w :e)
                     :to [(co/key-mods :s :cmd)
                          (co/key-mods :esc)]}]}
@@ -43,14 +42,14 @@
                                       (co/set-var var/space->shift 0)]
                     :to_if_alone (co/key-mods :tab)}]}
 
-   {:description "#open_bracket",
-    :manipulators [{:from (co/key-any :open_bracket)
-                    :to [(co/set-var var/space-changed 1)
-                         (co/set-var var/space->shift 1)
-                         (co/key-mods :opt :cmd)]
-                    :to_after_key_up [(co/set-var var/space-changed 0)
-                                      (co/set-var var/space->shift 0)]
-                    :to_if_alone (co/key-mods :open_bracket)}]}
+   #_{:description "#open_bracket",
+      :manipulators [{:from (co/key-any :open_bracket)
+                      :to [(co/set-var var/space-changed 1)
+                           (co/set-var var/space->shift 1)
+                           (co/key-mods :opt :cmd)]
+                      :to_after_key_up [(co/set-var var/space-changed 0)
+                                        (co/set-var var/space->shift 0)]
+                      :to_if_alone (co/key-mods :open_bracket)}]}
 
    {:description "#close_bracket",
     :manipulators [{:from (co/key-any :close_bracket)
