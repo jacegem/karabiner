@@ -3433,60 +3433,6 @@
             ]
           },
           {
-            "description": "#slash ",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "slash",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "set_variable": {
-                      "name": "space-changed",
-                      "value": 1
-                    }
-                  },
-                  {
-                    "set_variable": {
-                      "name": "space->shift",
-                      "value": 1
-                    }
-                  },
-                  {
-                    "key_code": "left_control",
-                    "modifiers": [
-                      "left_option",
-                      "left_command"
-                    ]
-                  }
-                ],
-                "to_after_key_up": [
-                  {
-                    "set_variable": {
-                      "name": "space-changed",
-                      "value": 0
-                    }
-                  },
-                  {
-                    "set_variable": {
-                      "name": "space->shift",
-                      "value": 0
-                    }
-                  }
-                ],
-                "to_if_alone": {
-                  "key_code": "slash"
-                },
-                "type": "basic"
-              }
-            ]
-          },
-          {
             "description": "ctrl ➡️ with spacebar",
             "manipulators": [
               {

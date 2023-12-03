@@ -80,14 +80,14 @@
                                         (co/set-var var/space->shift 0)]
                       :to_if_alone (co/key-mods :period)}]}
 
-   {:description "#slash ",
-    :manipulators [{:from (co/key-any :slash)
-                    :to [(co/set-var var/space-changed 1)
-                         (co/set-var var/space->shift 1)
-                         (co/key-mods :ctrl :opt :cmd)]
-                    :to_after_key_up [(co/set-var var/space-changed 0)
-                                      (co/set-var var/space->shift 0)]
-                    :to_if_alone (co/key-mods :slash)}]}
+   #_{:description "#slash ",
+      :manipulators [{:from (co/key-any :slash)
+                      :to [(co/set-var var/space-changed 1)
+                           (co/set-var var/space->shift 1)
+                           (co/key-mods :ctrl :opt :cmd)]
+                      :to_after_key_up [(co/set-var var/space-changed 0)
+                                        (co/set-var var/space->shift 0)]
+                      :to_if_alone (co/key-mods :slash)}]}
 
 
    #_{:description "right-shift ➡️ enter"
