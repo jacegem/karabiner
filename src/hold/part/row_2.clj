@@ -44,7 +44,11 @@
   [;; capslock
    {:description "#caps_lock ➡️ ctrl+opt / space 제외",
     :manipulators [{:from (co/key-any :caps)
-                    :to [(co/key-mods :ctrl :opt)]
+                    :to [(co/set-var var/space-changed 1)
+                         (co/set-var var/space->shift 1)
+                         (co/key-mods :ctrl :opt)]
+                    :to_after_key_up [(co/set-var var/space-changed 0)
+                                      (co/set-var var/space->shift 0)]
                     :to_if_alone [(co/key-mods :s :cmd)
                                   (co/key-mods :esc)]}]}
 
