@@ -63,7 +63,7 @@
                       :to_if_alone (co/key-mods :semicolon)}]}
 
 
-   {:description "#quote - 2",
+   #_{:description "#quote - 2",
     :manipulators [{:from (co/from-key-code {:key :quote
                                              :optional [:ctrl :opt :cmd]})
                     :to [(co/key-mods :quote :sft)]}

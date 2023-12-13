@@ -44,6 +44,7 @@
     (->> (concat left-rules right-rules single-rules)
          (map #(update % :manipulators update-type))
          (map #(dissoc % :copy-flip)))))
+         
 
 (defn set-configs
   ([] (set-configs rules))
