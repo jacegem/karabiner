@@ -62,6 +62,16 @@
                          (co/key-mods :sft)]
                     :to_delayed_action (co/delayed-action var/shift-pressed 0)}]}
 
+   {:description "right-shift ➡️ show modal "
+    :manipulators [{:from (co/key-any :rsft)
+                    :conditions [(co/var-if var/shift-pressed 1)]
+                    :to [(co/key-mods :spc :sft)]}
+
+                   {:from (co/key-any :rsft)
+                    :to [(co/set-var var/shift-pressed 1)
+                         (co/key-mods :rsft)]
+                    :to_delayed_action (co/delayed-action var/shift-pressed 0)}]}
+
    #_{:description "#comma ",
       :manipulators [{:from (co/key-any :comma)
                       :to [(co/set-var var/space-changed 1)
