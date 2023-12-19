@@ -20,7 +20,8 @@
    {:description "e+s ➡️ ctrl+opt+tab :: for mouse"
     :copy-flip true
     :manipulators [{:from (co/sim :e :s)
-                    :to [(co/key-mods :tab :ctrl :opt)]}]}])
+                    :to [(co/key-mods :tab :ctrl :opt)]
+                    :parameters {:basic.simultaneous_threshold_milliseconds 20}}]}])
 
 (def rules
   [;;  w
