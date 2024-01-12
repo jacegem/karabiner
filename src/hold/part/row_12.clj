@@ -3,19 +3,19 @@
             [hold.var :as var]))
 
 (def sim-rules
-  [{:description "w+f ➡️ ctrl+cmd+sft :: macro call"
+  [{:description "w+f ➡️ opt+cmd+sft :: macro call"
     :copy-flip true
     :manipulators [{:from  (co/sim :w :f)
-                    :to [(co/key-mods :ctrl :cmd :sft)]}]}
+                    :to [(co/key-mods :opt :cmd :sft)]}]}
 
-   {:description "e+f ➡️ ctrl+cmd :: for window"
+   {:description "e+f ➡️ opt+cmd+shift :: for window"
     :copy-flip true
     :manipulators [{:from (co/sim {:keys [:e :f]
                                    :to_after_key_up [(co/set-var  var/space-changed 0)
                                                      (co/set-var  var/space->shift 0)]})
                     :to [(co/set-var var/space-changed 1)
                          (co/set-var var/space->shift 1)
-                         (co/key-mods :ctrl :cmd)]}]}
+                         (co/key-mods :opt :cmd :sft)]}]}
 
    {:description "e+s ➡️ ctrl+opt+tab :: for mouse"
     :copy-flip true

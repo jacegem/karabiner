@@ -27,14 +27,14 @@
                          (co/set-var var/space->command 1)
                          (co/key-mods :ctrl :opt :sft)]}]}
 
-   {:description "d+f ➡️ opt+cmd :: symbol",
+   {:description "d+f ➡️ ctrl+cmd+shift :: symbol",
     :copy-flip true
     :manipulators [{:from (co/sim {:keys [:d :f]
                                    :to_after_key_up [(co/set-var  var/space-changed 0)
                                                      (co/set-var  var/space->shift 0)]})
                     :to [(co/set-var var/space-changed 1)
                          (co/set-var var/space->shift 1)
-                         (co/key-mods :opt :cmd)]}]}])
+                         (co/key-mods :ctrl :cmd :sft)]}]}])
 
 
 
