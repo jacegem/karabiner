@@ -4,65 +4,66 @@
 
 
 (def sim-rules
-  [{:description "spc+q ➡️ with :all",
-    :manipulators [{:from (co/sim {:keys [:spc :q]})
-                    :to [(co/key-mods :q :all)]}]}
+  []
+  #_[{:description "spc+q ➡️ with :all",
+      :manipulators [{:from (co/sim {:keys [:spc :q]})
+                      :to [(co/key-mods :q :all)]}]}
 
-   {:description "spc+w ➡️ with :all :: memory call",
-    :manipulators [{:from (co/sim {:keys [:spc :w]})
-                    :to [(co/key-mods :w :all)]}]}
+     {:description "spc+w ➡️ with :all :: memory call",
+      :manipulators [{:from (co/sim {:keys [:spc :w]})
+                      :to [(co/key-mods :w :all)]}]}
 
-   {:description "spc+e ➡️ ctrl+cmd :: window move"
-    :manipulators [{:from (co/sim {:keys [:spc :e]})
-                    :to [(co/key-mods :ctrl :cmd)]}]}
+     {:description "spc+e ➡️ ctrl+cmd :: window move"
+      :manipulators [{:from (co/sim {:keys [:spc :e]})
+                      :to [(co/key-mods :ctrl :cmd)]}]}
 
-   {:description "spc+r ➡️ opt+cmd+sft",
-    :manipulators [{:from (co/sim {:keys [:spc :r]})
-                    :to [(co/key-mods :ctrl :opt :sft)]}]}
+     {:description "spc+r ➡️ opt+cmd+sft",
+      :manipulators [{:from (co/sim {:keys [:spc :r]})
+                      :to [(co/key-mods :ctrl :opt :sft)]}]}
 
-   {:description "spc+t ➡️ ctrl+cmd+sft",
-    :manipulators [{:from (co/sim {:keys [:spc :t]})
-                    :to [(co/key-mods :ctrl :cmd :sft)]}]}
+     {:description "spc+t ➡️ ctrl+cmd+sft",
+      :manipulators [{:from (co/sim {:keys [:spc :t]})
+                      :to [(co/key-mods :ctrl :cmd :sft)]}]}
 
-   {:description "spc+a ➡️ all + a",
-    :manipulators [{:from (co/sim {:keys [:spc :a]})
-                    :to [(co/key-mods :a :all)]}]}
+     {:description "spc+a ➡️ all + a",
+      :manipulators [{:from (co/sim {:keys [:spc :a]})
+                      :to [(co/key-mods :a :all)]}]}
 
-   {:description "spc+s ➡️ ctrl+opt",
-    :manipulators [{:from (co/sim {:keys [:spc :s]})
-                    :to [(co/key-mods :ctrl :opt)]}]}
+     {:description "spc+s ➡️ ctrl+opt",
+      :manipulators [{:from (co/sim {:keys [:spc :s]})
+                      :to [(co/key-mods :ctrl :opt)]}]}
 
-   {:description "spc+d ➡️ ctrl+opt+sft",
-    :manipulators [{:from (co/sim {:keys [:spc :d]})
-                    :to [(co/key-mods :ctrl :opt :sft)]}]}
+     {:description "spc+d ➡️ ctrl+opt+sft",
+      :manipulators [{:from (co/sim {:keys [:spc :d]})
+                      :to [(co/key-mods :ctrl :opt :sft)]}]}
 
-   {:description "spc+f ➡️ opt+cmd",
-    :manipulators [{:from (co/sim {:keys [:spc :f]})
-                    :to [(co/key-mods :opt :cmd)]}]}
+     {:description "spc+f ➡️ opt+cmd",
+      :manipulators [{:from (co/sim {:keys [:spc :f]})
+                      :to [(co/key-mods :opt :cmd)]}]}
 
-   {:description "spc+g ➡️ cmd+sft",
-    :manipulators [{:from (co/sim {:keys [:spc :g]})
-                    :to [(co/key-mods :cmd :sft)]}]}
+     {:description "spc+g ➡️ cmd+sft",
+      :manipulators [{:from (co/sim {:keys [:spc :g]})
+                      :to [(co/key-mods :cmd :sft)]}]}
 
-   {:description "spc+z ➡️ opt",
-    :manipulators [{:from (co/sim {:keys [:spc :z]})
-                    :to [(co/key-mods :opt)]}]}
+     {:description "spc+z ➡️ opt",
+      :manipulators [{:from (co/sim {:keys [:spc :z]})
+                      :to [(co/key-mods :opt)]}]}
 
-   {:description "spc+x ➡️ opt",
-    :manipulators [{:from (co/sim {:keys [:spc :x]})
-                    :to [(co/key-mods :sft)]}]}
+     {:description "spc+x ➡️ opt",
+      :manipulators [{:from (co/sim {:keys [:spc :x]})
+                      :to [(co/key-mods :sft)]}]}
 
-   {:description "spc+c ➡️ ctrl+opt+cmd",
-    :manipulators [{:from (co/sim {:keys [:spc :c]})
-                    :to [(co/key-mods :ctrl :opt :cmd)]}]}
+     {:description "spc+c ➡️ ctrl+opt+cmd",
+      :manipulators [{:from (co/sim {:keys [:spc :c]})
+                      :to [(co/key-mods :ctrl :opt :cmd)]}]}
 
-   {:description "spc+v ➡️ cmd"
-    :manipulators [{:from (co/sim {:keys [:spc :v]})
-                    :to [(co/key-mods :cmd)]}]}
+     {:description "spc+v ➡️ cmd"
+      :manipulators [{:from (co/sim {:keys [:spc :v]})
+                      :to [(co/key-mods :cmd)]}]}
 
-   {:description "spc+b ➡️ opt+sft"
-    :manipulators [{:from (co/sim {:keys [:spc :b]})
-                    :to [(co/key-mods :opt :sft)]}]}])
+     {:description "spc+b ➡️ opt+sft"
+      :manipulators [{:from (co/sim {:keys [:spc :b]})
+                      :to [(co/key-mods :opt :sft)]}]}])
 
 
 (def rules
