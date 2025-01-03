@@ -39,7 +39,7 @@
                     :to (co/key-mods "v" :cmd)}]}
 
    {:description "s+c ➡️ ctrl+opt+cmd"
-    :copy-flip true
+    :copy-flip false ;; false for type `ㅢ`
     :manipulators [{:type "basic",
                     :from (co/sim {:keys [:s :c]
                                    :to_after_key_up [(co/set-var var/space-changed 0)
@@ -48,10 +48,10 @@
                          (co/set-var var/space->shift 1)
                          (co/key-mods :ctrl :opt :cmd)]}]}
 
-   {:description "s+v ➡️ ctrl+opt+cmd+sft"
-    :copy-flip true
-    :manipulators [{:from (co/sim :s :v)
-                    :to (co/key-mods :ctrl :opt :cmd :sft)}]}
+   #_{:description "s+v ➡️ ctrl+opt+cmd+sft"
+      :copy-flip true
+      :manipulators [{:from (co/sim :s :v)
+                      :to (co/key-mods :ctrl :opt :cmd :sft)}]}
 
    {:description "d+c ➡️ opt+cmd+sft :: symbol-2"
     :copy-flip true

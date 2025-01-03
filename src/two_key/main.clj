@@ -22,7 +22,8 @@
                                 row-4/rules
                                 row-45/rules
                                 row-5/rules
-                                row-6/rules)
+                                #_row-6/rules ;; space 는 모두 제외한다. 2025-01-02
+                                )
                         (map #(update % :manipulators
                                       (fn [manipulators]
                                         (map update-type manipulators)))))
@@ -59,7 +60,7 @@
 
 
 (comment
-  (rules)
+  rules
   (set-configs)
 
 

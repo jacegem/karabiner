@@ -16,7 +16,7 @@
                                                      (co/set-var  var/space->shift 0)]})
                     :to [(co/set-var var/space-changed 1)
                          (co/set-var var/space->shift 1)
-                         (co/key-mods :ctrl :cmd)]}]}
+                         (co/key-mods :opt :cmd :sft)]}]}
 
    {:description "e+s ➡️ ctrl+opt+tab :: for mouse"
     :copy-flip true

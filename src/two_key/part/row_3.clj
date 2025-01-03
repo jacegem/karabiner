@@ -6,7 +6,7 @@
 (def rules
   [;;  w
    {:description "w+e ➡️ escape"
-    :copy-flip true
+    :copy-flip false ;; for type `io`
     :manipulators [{:from (co/sim :w :e),
                     :to [(co/key-mods :esc)]}]}
 
