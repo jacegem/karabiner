@@ -18,10 +18,10 @@
                          (co/set-var var/space->shift 1)
                          (co/key-mods :opt :cmd :sft)]}]}
 
-   {:description "e+s ➡️ ctrl+opt+tab :: for mouse"
-    :copy-flip true
-    :manipulators [{:from (co/sim :e :s)
-                    :to [(co/key-mods :tab :ctrl :opt)]}]}])
+   #_{:description "e+s ➡️ ctrl+opt+tab :: for mouse"
+      :copy-flip true
+      :manipulators [{:from (co/sim :e :s)
+                      :to [(co/key-mods :tab :ctrl :opt)]}]}])
 
 
 
