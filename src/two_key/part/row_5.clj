@@ -47,18 +47,24 @@
     :manipulators [{:from (co/sim :z :x)
                     :to (co/key-mods :z :cmd)}]}
 
-   {:description "double-right-shift to show CLOCK 1"
-    :manipulators [{:from (co/key-any :rsft)
-                    :conditions [(co/var-if "right-shift" 1)]
-                    :to [(co/key-mods :act :ctrl :opt)]}
+   #_{:description "double-right-shift to show CLOCK 1"
+      :manipulators [{:from (co/key-any :rsft)
+                      :conditions [(co/var-if "right-shift" 1)]
+                      :to [(co/key-mods :act :ctrl :opt)]}
 
-                   {:from (co/key-any :rsft)
-                    :to [(co/set-var "right-shift" 1)
-                         (co/key-mods :rsft)]
-                    :to_delayed_action (co/delayed-action "right-shift" 0)}]}]
+                     {:from (co/key-any :rsft)
+                      :to [(co/set-var "right-shift" 1)
+                           (co/key-mods :rsft)]
+                      :to_delayed_action (co/delayed-action "right-shift" 0)}]}]
 
   ;; end
   )
+
+#_{:from (co/key-any :rsft)
+   :conditions [(co/var-if "right-shift" 1)]
+   :to [(co/set-var "right-shift" 2)
+        (co/key-mods :rsft)]
+   :to_delayed_action (co/delayed-action "right-shift" 0)}
 
 
 
